@@ -2,11 +2,6 @@
 
 class Solution
 {
-
-    /**
-     * @param String $s
-     * @return Integer
-     */
     function lengthOfLongestSubstring($s)
     {
         if (strlen($s) == 0) {
@@ -34,6 +29,8 @@ class Solution
         return $len;
     }
 }
+
+// 时间复杂度O(n), 空间复杂度O(1)
 
 echo (new Solution())->lengthOfLongestSubstring("abcabcbb");
 echo "\n";
