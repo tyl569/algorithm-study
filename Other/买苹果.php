@@ -12,7 +12,6 @@
 
 // 暴力解决
 // 尽可能多的使用8个容量的购物袋
-// 时间复杂度O(N) 空间复杂度O(1)
 function minPackge($n)
 {
     if ($n % 8 ==0) {
@@ -28,7 +27,6 @@ function minPackge($n)
 }
 
 // 通过暴力解决，枚举找出规律
-// 时间复杂度O(1), 空间复杂度0
 function minBag($n)
 {
     if ($n >= 18) {

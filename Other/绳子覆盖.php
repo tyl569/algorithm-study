@@ -3,7 +3,6 @@
  * 给定一个有序数组arr，代表数轴上从左到右有n个点arr[0]、arr[1]...arr[n-1]。给定一 个正数L，代表一根长度为L的绳子，求绳子最多能覆盖其中的几个点。
  */
 // 暴力解决
-// 时间复杂度O(N2) 空间复杂度(N)
 function violence($arr, $l)
 {
     if (count($arr) == 0) {
@@ -22,7 +21,6 @@ function violence($arr, $l)
     return max($lenArr);
 }
 // 滑动窗口
-// 时间复杂度O(N) 空间复杂度(N),
 function slideWind($arr, $l)
 {
     if (count($arr) == 0) {

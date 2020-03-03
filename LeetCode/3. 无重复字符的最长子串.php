@@ -30,8 +30,6 @@ class Solution
     }
 }
 
-// 时间复杂度O(n), 空间复杂度O(1)
-
 echo (new Solution())->lengthOfLongestSubstring("abcabcbb");
 echo "\n";
 echo (new Solution())->lengthOfLongestSubstring("bbbbb");
