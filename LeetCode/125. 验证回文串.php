@@ -9,28 +9,22 @@ class Solution
      */
     function isPalindrome($s)
     {
-        if (empty($s)) {
-            return true;
-        }
-        if (strlen($s) == 1) {
+        if (empty($s) || strlen($s) == 1) {
             return true;
         }
         $s = strtolower($s);
         $i = 0;
         $j = strlen($s) - 1;
         while ($i < $j) {
-            $tmpI = $s{$i};
-            $tmpJ = $s{$j};
-
-            if (!preg_match("/^[a-z0-9]/", $tmpI)) {
+            if (!preg_match("/^[a-z0-9]/", $s{$i})) {
                 $i++;
                 continue;
             }
-            if (!preg_match("/^[a-z0-9]/", $tmpJ)) {
+            if (!preg_match("/^[a-z0-9]/", $s{$j})) {
                 $j--;
                 continue;
             }
-            if ($tmpI != $tmpJ) {
+            if ($s{$i} != $s{$j}) {
                 return false;
             }
             $i++;
