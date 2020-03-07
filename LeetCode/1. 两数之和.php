@@ -10,13 +10,13 @@ class Solution
      */
     function twoSum($nums, $target)
     {
-        $new = [];
+        $arr = [];
         for ($i = 0; $i < count($nums); $i++) {
             $diff = $target - $nums[$i];
-            if (isset($new[$diff])) {
-                return [$new[$diff], $i];
+            if (isset($arr[$diff])) {
+                return [$arr[$diff], $i];
             }
-            $new[$nums[$i]] = $i;
+            $arr[$nums[$i]] = $i;
         }
     }
 }
