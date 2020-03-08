@@ -7,6 +7,8 @@ class Solution
      * @param Integer[] $digits
      * @return Integer[]
      */
+
+    // 一般的数字比较简单，直接+1，比较特殊的是 199、999这类
     function plusOne($digits)
     {
         $digits[count($digits) - 1] += 1;
