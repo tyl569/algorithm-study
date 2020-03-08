@@ -9,12 +9,12 @@ class Solution
      */
     function isValid($s)
     {
-        if ($s{0} == ")" || $s{0} == "]" || $s{0} == "}") {
-            return false;
-        }
         $stack = new SplStack();
         $i = 0;
         while ($i < strlen($s)) {
+            if ($stack->isEmpty() && ($s{$i} == "]" || $s{$i} == "}" || $s{$i} == ")" )) {
+                return false;
+            }
             if (!$stack->isEmpty() && $s{$i} == "}" && $stack->top() == "{") {
                 $stack->pop();
             } elseif (!$stack->isEmpty() && $s{$i} == "]" && $stack->top() == "[") {
