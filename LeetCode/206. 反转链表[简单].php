@@ -33,6 +33,19 @@ class Solution
         }
         return $newHead;
     }
+
+    // 递归方法
+    function reverseList2($head)
+    {
+        if ($head == null || $head->next == null) {
+            return $head;
+        }
+        $p = $this->reverseList2($head->next);
+        $head->next->next = $head;
+        $head->next = null;
+
+        return $p;
+    }
 }
 
 $head = new ListNode(null);
@@ -47,16 +60,38 @@ $node3->next = $node4;
 $node5 = new ListNode(5);
 $node4->next = $node5;
 
-$head1 = $head;
-echo "反转前的链表:";
-while ($head != null) {
-    echo $head->val;
-    $head = $head->next;
+function mock($head)
+{
+    $head1 = $head;
+    echo "反转前的链表:";
+    while ($head != null) {
+        echo $head->val;
+        $head = $head->next;
+    }
+    echo "\n";
+    $newHead = (new Solution())->reverseList($head1);
+    echo "反转后的链表:";
+    while ($newHead != null) {
+        echo $newHead->val;
+        $newHead = $newHead->next;
+    }
 }
-echo "\n";
-$newHead = (new Solution())->reverseList($head1);
-echo "反转后的链表:";
-while ($newHead != null) {
-    echo $newHead->val;
-    $newHead = $newHead->next;
+function mock2($head)
+{
+    $head1 = $head;
+    echo "反转前的链表:";
+    while ($head != null) {
+        echo $head->val;
+        $head = $head->next;
+    }
+    echo "\n";
+    $newHead = (new Solution())->reverseList2($head1);
+    echo "反转后的链表:";
+    while ($newHead != null) {
+        echo $newHead->val;
+        $newHead = $newHead->next;
+    }
 }
+
+//mock($head);
+mock2($head);
