@@ -39,3 +39,5 @@ echo "\n";
 echo (new Solution())->largestRectangleArea([0, 2]);
 echo "\n";
 echo (new Solution())->largestRectangleArea([2, 0, 0]);
+echo "\n";
+echo (new Solution())->largestRectangleArea([6, 7, 5, 2, 4, 5, 9, 3]);
