@@ -7,6 +7,7 @@ class Solution
      * @param Integer[] $heights
      * @return Integer
      */
+    // 暴力解决
     function largestRectangleArea($heights)
     {
         $max = 0;
@@ -26,18 +27,38 @@ class Solution
         }
         return $max;
     }
+
+    // 分治方法
+    public function largestRectangleArea2($heights)
+    {
+        return $this->calMaxArea($heights, 0, count($heights) - 1);
+    }
+
+    function calMaxArea($heights, $start, $end)
+    {
+        if ($start > $end) {
+            return 0;
+        }
+        $miniIndex = $start;
+        for ($i = $start; $i <= $end; $i++) {
+            if ($heights[$i] < $heights[$miniIndex]) {
+                $miniIndex = $i;
+            }
+        }
+        $miniIndexArea = $heights[$miniIndex] * ($end - $start + 1); // 最小位置的面积
+        $leftMax = $this->calMaxArea($heights, $start, $miniIndex - 1);// 左边最大的面积
+        $rightMax = $this->calMaxArea($heights, $miniIndex + 1, $end);// 右边最大的面积
+        return max($miniIndexArea, $leftMax, $rightMax);
+    }
 }
 
 echo (new Solution())->largestRectangleArea([2, 1, 5, 6, 2, 3]);
 echo "\n";
 echo (new Solution())->largestRectangleArea([2, 2]);
 echo "\n";
-echo (new Solution())->largestRectangleArea([2, 1, 1, 1, 1, 1]);
+
+
+echo (new Solution())->largestRectangleArea2([2, 1, 5, 6, 2, 3]);
 echo "\n";
-echo (new Solution())->largestRectangleArea([2, 1]);
+echo (new Solution())->largestRectangleArea2([2, 2]);
 echo "\n";
-echo (new Solution())->largestRectangleArea([0, 2]);
-echo "\n";
-echo (new Solution())->largestRectangleArea([2, 0, 0]);
-echo "\n";
-echo (new Solution())->largestRectangleArea([6, 7, 5, 2, 4, 5, 9, 3]);
