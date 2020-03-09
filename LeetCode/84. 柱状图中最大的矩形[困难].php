@@ -50,6 +50,29 @@ class Solution
         $rightMax = $this->calMaxArea($heights, $miniIndex + 1, $end);// 右边最大的面积
         return max($miniIndexArea, $leftMax, $rightMax);
     }
+
+    // 使用栈
+    public function largestRectangleArea3($heights)
+    {
+        $stack = new SplStack();
+        $length = count($heights);
+        $stack->push(-1);
+        $max = 0;
+        for ($i = 0; $i < $length; ++$i) {
+            while ($stack->top() != -1 && $heights[$stack->top()] >= $heights[$i]) {
+                $current = $stack->pop();
+                $area = $heights[$current] * ($i - $stack->top() - 1);
+                $max = max($area, $max);
+            }
+            $stack->push($i);
+        }
+        while ($stack->top() != -1) {
+            $current = $stack->pop();
+            $area = $heights[$current] * ($length - $stack->top() - 1);
+            $max = max($area, $max);
+        }
+        return $max;
+    }
 }
 
 echo (new Solution())->largestRectangleArea([2, 1, 5, 6, 2, 3]);
@@ -61,4 +84,10 @@ echo "\n";
 echo (new Solution())->largestRectangleArea2([2, 1, 5, 6, 2, 3]);
 echo "\n";
 echo (new Solution())->largestRectangleArea2([2, 2]);
+echo "\n";
+
+
+echo (new Solution())->largestRectangleArea3([2, 1, 5, 6, 2, 3]);
+echo "\n";
+echo (new Solution())->largestRectangleArea3([2, 2]);
 echo "\n";
