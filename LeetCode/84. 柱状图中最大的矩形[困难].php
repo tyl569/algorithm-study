@@ -44,50 +44,50 @@ class Solution
             if ($heights[$i] < $heights[$miniIndex]) {
                 $miniIndex = $i;
             }
+            $miniArea = ($end - $start + 1) * $heights[$miniIndex];
+            $left = $this->calMaxArea($heights, $start, $miniIndex - 1);
+            $right = $this->calMaxArea($heights, $miniIndex + 1, $end);
+            $max = max($miniArea, $left, $right);
         }
-        $miniIndexArea = $heights[$miniIndex] * ($end - $start + 1); // 最小位置的面积
-        $leftMax = $this->calMaxArea($heights, $start, $miniIndex - 1);// 左边最大的面积
-        $rightMax = $this->calMaxArea($heights, $miniIndex + 1, $end);// 右边最大的面积
-        return max($miniIndexArea, $leftMax, $rightMax);
+        return $max;
     }
 
-    // 使用栈
+    // 使用栈 [6,7,5,2,4,5,9,3]
     public function largestRectangleArea3($heights)
     {
         $stack = new SplStack();
         $length = count($heights);
         $stack->push(-1);
         $max = 0;
-        for ($i = 0; $i < $length; ++$i) {
+        for ($i = 0; $i < $length; $i++) {
             while ($stack->top() != -1 && $heights[$stack->top()] >= $heights[$i]) {
-                $current = $stack->pop();
-                $area = $heights[$current] * ($i - $stack->top() - 1);
-                $max = max($area, $max);
+                $currentLeft = $stack->pop();
+                $area = ($i - $stack->top() - 1) * $heights[$currentLeft];
+                $max = max($max, $area);
             }
             $stack->push($i);
         }
         while ($stack->top() != -1) {
-            $current = $stack->pop();
-            $area = $heights[$current] * ($length - $stack->top() - 1);
-            $max = max($area, $max);
+            $loc = $stack->pop();
+            $area = $heights[$loc] * ($length - $stack->top() - 1);
+            $max = max($max, $area);
         }
         return $max;
     }
 }
 
-echo (new Solution())->largestRectangleArea([2, 1, 5, 6, 2, 3]);
+echo (new Solution())->largestRectangleArea([6, 7, 5, 2, 4, 5, 9, 3]);
 echo "\n";
 echo (new Solution())->largestRectangleArea([2, 2]);
 echo "\n";
 
 
-echo (new Solution())->largestRectangleArea2([2, 1, 5, 6, 2, 3]);
+echo (new Solution())->largestRectangleArea2([6, 7, 5, 2, 4, 5, 9, 3]);
 echo "\n";
 echo (new Solution())->largestRectangleArea2([2, 2]);
 echo "\n";
 
-
-echo (new Solution())->largestRectangleArea3([2, 1, 5, 6, 2, 3]);
+echo (new Solution())->largestRectangleArea3([6, 7, 5, 2, 4, 5, 9, 3]);
 echo "\n";
-echo (new Solution())->largestRectangleArea3([2, 2]);
+echo (new Solution())->largestRectangleArea2([2, 2]);
 echo "\n";
