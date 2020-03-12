@@ -38,8 +38,8 @@ class Solution
     }
 }
 
-$ret = (new Solution())->maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3);
+$ret = (new Solution())->minSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3);
 var_dump($ret);
 
-$ret = (new Solution())->maxSlidingWindow2([1, 3, -1, -3, 5, 3, 6, 7], 3);
+$ret = (new Solution())->minSlidingWindow2([1, 3, -1, -3, 5, 3, 6, 7], 3);
 var_dump($ret);
