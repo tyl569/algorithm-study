@@ -19,25 +19,23 @@ class Solution
 
     function maxSlidingWindow2($nums, $k)
     {
-        $windows = [];
         $res = [];
+        $windows = [];
         for ($i = 0; $i < count($nums); $i++) {
-            if ($i >= $k + $windows[0]) {
+            if ($windows[0] + $k <= $i) {
                 array_shift($windows);
             }
-            while ($windows && $nums[end($windows)] <= $nums[$i]) {
+            while (!empty($windows) && $nums[$i] >= $nums[end($windows)]) {
                 array_pop($windows);
             }
-
             $windows[] = $i;
+
             if ($i >= $k - 1) {
                 $res[] = $nums[$windows[0]];
             }
         }
         return $res;
     }
-
-
 }
 
 $ret = (new Solution())->maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3);
