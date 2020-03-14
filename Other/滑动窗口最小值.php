@@ -39,14 +39,19 @@ class Solution
     }
 }
 
-$ret1 = (new Solution())->minSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3);
-$ret2 = (new Solution())->minSlidingWindow2([1, 3, -1, -3, 5, 3, 6, 7], 3);
-if ($ret1 == $ret2) {
-    echo "测试case通过.\n";
-}
+function mock()
+{
+    echo "========= test case start =========\n";
+    $ret1 = (new Solution())->minSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3);
+    $ret2 = (new Solution())->minSlidingWindow2([1, 3, -1, -3, 5, 3, 6, 7], 3);
+    if ($ret1 == $ret2) {
+        echo "测试case通过.\n";
+    }
 
-$ret1 = (new Solution())->minSlidingWindow([5, 3, 7, 0, -5, 3, 6, -7], 3);
-$ret2 = (new Solution())->minSlidingWindow2([5, 3, 7, 0, -5, 3, 6, -7], 3);
-if ($ret1 == $ret2) {
-    echo "测试case通过.\n";
+    $ret1 = (new Solution())->minSlidingWindow([5, 3, 7, 0, -5, 3, 6, -7], 3);
+    $ret2 = (new Solution())->minSlidingWindow2([5, 3, 7, 0, -5, 3, 6, -7], 3);
+    if ($ret1 == $ret2) {
+        echo "测试case通过.\n";
+    }
+    echo "========= test case end =========\n";
 }

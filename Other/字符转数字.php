@@ -45,6 +45,11 @@ function process2($str)
 
 }
 
-echo solution("1223");
-echo "\n";
-echo process2("1223");
+function mock()
+{
+    echo "========= test case start =========\n";
+    echo solution("1223");
+    echo "\n";
+    echo process2("1223");
+    echo "========= test case end =========\n";
+}

@@ -14,11 +14,11 @@
 // 尽可能多的使用8个容量的购物袋
 function minPackge($n)
 {
-    if ($n % 8 ==0) {
+    if ($n % 8 == 0) {
         return $n / 8;
     }
     $max = intval($n / 8);
-    for ($i = $max; $i >=0; $i--) {
+    for ($i = $max; $i >= 0; $i--) {
         if (($n - 8 * $i) % 6 == 0) {
             return $i + ($n - 8 * $i) / 6;
         }
@@ -36,7 +36,7 @@ function minBag($n)
             return -1;
         }
     }
-    if ($n == 6 || $n == 8 ) return 1;
+    if ($n == 6 || $n == 8) return 1;
     if ($n == 12 || $n == 14 || $n == 16) return 2;
     return -1;
 }

@@ -41,7 +41,13 @@ function bestAnswer($str)
     return $min;
 }
 
-$str = "GRRRGGRG";
-$str = "GRRRRGRG";
-$str = "GGRRGGRG";
-bestAnswer($str);
+
+function mock()
+{
+    echo "========= test case start =========\n";
+    $str = "GRRRGGRG";
+    $str = "GRRRRGRG";
+    $str = "GGRRGGRG";
+    bestAnswer($str);
+    echo "========= test case end =========\n";
+}

@@ -20,6 +20,7 @@ function violence($arr, $l)
     }
     return max($lenArr);
 }
+
 // 滑动窗口
 function slideWind($arr, $l)
 {
@@ -44,8 +45,13 @@ function slideWind($arr, $l)
     return max($lenArr);
 }
 
-$testArr = [1, 3, 7, 10, 12]; // 数组
-$l = 8; // 绳子长度
-echo violence($testArr, $l);
-echo "\n";
-echo slideWind($testArr, $l);
+function mock()
+{
+    echo "========= test case start =========\n";
+    $testArr = [1, 3, 7, 10, 12]; // 数组
+    $l = 8; // 绳子长度
+    echo violence($testArr, $l);
+    echo "\n";
+    echo slideWind($testArr, $l);
+    echo "========= test case end =========\n";
+}

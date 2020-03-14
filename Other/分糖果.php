@@ -25,7 +25,7 @@ function solution($children, $surger)
     while ($i < count($children) && $j < count($surger)) {
         // 如果满足小朋友的口味，继续分配下个小朋友和糖果
         if ($children[$i] <= $surger[$j]) {
-            $num ++;
+            $num++;
             $i++;
             $j++;
         } else {
@@ -35,10 +35,18 @@ function solution($children, $surger)
     return $num;
 }
 
-echo solution([1, 2, 3], [1, 1]);
-echo "\n";
-echo solution([1, 2, 3, 5], [1, 1, 4]);
-echo "\n";
-echo solution([3, 4, 5, 6, 1, 2], [4, 6, 7]);
-echo "\n";
+
+function mock()
+{
+    echo "========= test case start =========\n";
+    echo solution([1, 2, 3], [1, 1]);
+    echo "\n";
+    echo solution([1, 2, 3, 5], [1, 1, 4]);
+    echo "\n";
+    echo solution([3, 4, 5, 6, 1, 2], [4, 6, 7]);
+    echo "\n";
+    echo "========= test case end =========\n";
+}
+
+
 

@@ -45,6 +45,11 @@ function solution2($x, $y)
     return $dp[$y - 1];
 }
 
-echo solution(10, 10);
-echo "\n";
-echo solution2(10, 10);
+function mock()
+{
+    echo "========= test case start =========\n";
+    echo solution(10, 10);
+    echo "\n";
+    echo solution2(10, 10);
+    echo "========= test case end =========\n";
+}

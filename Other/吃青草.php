@@ -30,4 +30,9 @@ function eatGlass($n)
     }
 }
 
-echo eatGlass(7);
+function mock()
+{
+    echo "========= test case start =========\n";
+    echo eatGlass(7);
+    echo "========= test case end =========\n";
+}

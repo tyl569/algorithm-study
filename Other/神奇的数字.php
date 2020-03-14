@@ -59,10 +59,15 @@ function solution2($start, $end)
     }
 }
 
-echo solution(2, 5);
-echo "\n";
-echo solution(3, 10);
-echo "\n";
-echo solution2(2, 5);
-echo "\n";
-echo solution2(3, 10);
+function mock()
+{
+    echo "========= test case start =========\n";
+    echo solution(2, 5);
+    echo "\n";
+    echo solution(3, 10);
+    echo "\n";
+    echo solution2(2, 5);
+    echo "\n";
+    echo solution2(3, 10);
+    echo "========= test case end =========\n";
+}

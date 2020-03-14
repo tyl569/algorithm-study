@@ -47,7 +47,8 @@ function solution_2($s)
     return $count + $need;
 }
 
-function mock() {
+function mock()
+{
     echo "=======test case for quest 1 start ====== \n";
     $ret1 = solution_1("()()()()");
     $ret2 = solution_1("()");
