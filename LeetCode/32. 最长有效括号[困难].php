@@ -39,7 +39,7 @@ class Solution
                 $max = max($max, $left * 2);
             }
             if ($right > $left) {
-                $left == $right = 0;
+                $left = $right = 0;
             }
         }
         $left = $right = 0;
