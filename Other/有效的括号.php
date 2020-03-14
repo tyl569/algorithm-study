@@ -47,6 +47,28 @@ function solution_2($s)
     return $count + $need;
 }
 
+function solution_3($s)
+{
+    if (empty($s)) {
+        return 0;
+    }
+    $dp = [];
+    $res = 0;
+    // 思路：统计以dp[i]结尾的最长子串的长度
+    for ($i = 1; $i < strlen($s); $i++) {
+        $dp[$i] = 0;
+        if ($s{$i} == ")") {
+            $pre = $i - 1 - $dp[$i - 1];
+            if ($pre >= 0 && $s{$pre} == "(") {
+                $dp[$i] = $dp[$i - 1] + 2 + ($pre > 0 ? $dp[$pre - 1] : 0);
+            }
+        }
+        $res = max($res, $dp[$i]);
+
+    }
+    return $res;
+}
+
 function mock()
 {
     echo "=======test case for quest 1 start ====== \n";
@@ -63,6 +85,13 @@ function mock()
     $ret4 = solution_2(")))(((");
     var_dump($ret1, $ret2, $ret3, $ret4);
     echo "=======test case for quest 2 end ====== \n";
+    echo "=======test case for quest 3 start ====== \n";
+    $ret1 = solution_3("()");
+    $ret2 = solution_3("(())");
+    $ret3 = solution_3(")()()(");
+    $ret4 = solution_3(")))((((()()())()");
+    var_dump($ret1, $ret2, $ret3, $ret4);
+    echo "=======test case for quest 3 end ====== \n";
 }
 
 mock();
