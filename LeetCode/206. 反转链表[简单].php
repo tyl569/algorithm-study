@@ -76,6 +76,7 @@ function mock($head)
         $newHead = $newHead->next;
     }
 }
+
 function mock2($head)
 {
     $head1 = $head;

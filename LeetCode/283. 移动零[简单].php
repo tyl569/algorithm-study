@@ -24,15 +24,16 @@ class Solution
     {
         $len = count($nums);
         for ($i = 0; $i < $len; $i++) {
-           if ($nums[$i] == 0) {
-               unset($nums[$i]);// 直接unset 代价比较高
-           }
+            if ($nums[$i] == 0) {
+                unset($nums[$i]);// 直接unset 代价比较高
+            }
         }
         for ($i = count($nums); $i < $len; $i++) {
             $nums[] = 0;
         }
     }
 }
+
 //
 //$nums = [0, 1, 0, 3, 12];
 //(new Solution())->moveZeroes($nums);

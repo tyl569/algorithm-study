@@ -12,7 +12,7 @@ class Solution
         $stack = new SplStack();
         $i = 0;
         while ($i < strlen($s)) {
-            if ($stack->isEmpty() && ($s{$i} == "]" || $s{$i} == "}" || $s{$i} == ")" )) {
+            if ($stack->isEmpty() && ($s{$i} == "]" || $s{$i} == "}" || $s{$i} == ")")) {
                 return false;
             }
             if (!$stack->isEmpty() && $s{$i} == "}" && $stack->top() == "{") {

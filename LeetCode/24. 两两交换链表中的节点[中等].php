@@ -23,6 +23,18 @@ class ListNode
 class Solution
 {
 
+    function swapPairs2($head)
+    {
+        if ($head == null || $head->next == null) {
+            return $head;
+        }
+        $first = $head;
+        $second = $head->next;
+        $first->next = $this->swapPairs($second->next);
+        $second->next = $first;
+        return $second;
+    }
+
     /**
      * @param ListNode $head
      * @return ListNode
@@ -41,18 +53,6 @@ class Solution
             $tmp = $first;
         }
         return $pre->next;
-    }
-
-    function swapPairs2($head)
-    {
-        if ($head == null || $head->next == null) {
-            return $head;
-        }
-        $first = $head;
-        $second = $head->next;
-        $first->next = $this->swapPairs($second->next);
-        $second->next = $first;
-        return $second;
     }
 }
 

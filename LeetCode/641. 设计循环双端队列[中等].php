@@ -1,5 +1,7 @@
 <?php
-class MyCircularDeque {
+
+class MyCircularDeque
+{
     public $count = 0;
     public $head = 0;
     public $tail = 0;
@@ -30,6 +32,15 @@ class MyCircularDeque {
     }
 
     /**
+     * Checks whether the circular deque is full or not.
+     * @return Boolean
+     */
+    function isFull()
+    {
+        return ($this->tail + 1) % $this->count == $this->head;
+    }
+
+    /**
      * Adds an item at the rear of Deque. Return true if the operation is successful.
      * @param Integer $value
      * @return Boolean
@@ -55,6 +66,15 @@ class MyCircularDeque {
         }
         $this->head = ($this->head + 1) % $this->count;
         return true;
+    }
+
+    /**
+     * Checks whether the circular deque is empty or not.
+     * @return Boolean
+     */
+    function isEmpty()
+    {
+        return $this->head == $this->tail;
     }
 
     /**
@@ -94,24 +114,5 @@ class MyCircularDeque {
             return -1;
         }
         return $this->queue[($this->tail - 1 + $this->count) % $this->count];
-    }
-
-    /**
-     * Checks whether the circular deque is empty or not.
-     * @return Boolean
-     */
-    function isEmpty()
-    {
-        return $this->head == $this->tail;
-    }
-
-
-    /**
-     * Checks whether the circular deque is full or not.
-     * @return Boolean
-     */
-    function isFull()
-    {
-        return ($this->tail + 1) % $this->count == $this->head;
     }
 }
