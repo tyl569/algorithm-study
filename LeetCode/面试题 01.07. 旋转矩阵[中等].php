@@ -16,7 +16,6 @@ class Solution
         while ($a < $c) {
             $this->rotateArr($matrix, $a++, $b++, $c--, $d--);
         }
-        return $matrix;
     }
 
     function rotateArr(&$matrix, $a, $b, $c, $d)
