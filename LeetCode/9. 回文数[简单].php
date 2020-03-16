@@ -9,7 +9,7 @@ class Solution
      */
     function isPalindrome($x)
     {
-        if ($x < 0) {
+        if ($x < 0 || ($x % 10 == 0 && $x != 0)) {
             return false;
         }
         $x = strval($x);
@@ -24,6 +24,19 @@ class Solution
         }
         return true;
     }
+
+    function isPalindrome_2($x)
+    {
+        if ($x < 0 || ($x % 10 == 0 && $x != 0)) {
+            return false;
+        }
+        $revertedNumber = 0;
+        while ($x > $revertedNumber) {
+            $revertedNumber = $revertedNumber * 10 + $x % 10;
+            $x = intval($x / 10);
+        }
+        return $x == $revertedNumber || $x == intval($revertedNumber / 10);
+    }
 }
 
 mock();
@@ -34,5 +47,8 @@ function mock()
     var_dump((new Solution())->isPalindrome(121));
     var_dump((new Solution())->isPalindrome(-121));
     var_dump((new Solution())->isPalindrome(10));
+    var_dump((new Solution())->isPalindrome_2(1221));
+    var_dump((new Solution())->isPalindrome_2(-121));
+    var_dump((new Solution())->isPalindrome_2(10));
     echo "======= test case end =======\n";
 }
