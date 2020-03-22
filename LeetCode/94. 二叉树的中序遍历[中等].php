@@ -32,6 +32,23 @@ class Solution
         }
         return $res;
     }
+
+    function solution_2($root)
+    {
+        $stack = new SplStack();
+        $curr = $root;
+        $res = [];
+        while ($curr != null || !$stack->isEmpty()) {
+            while ($curr != null) {
+                $stack->push($curr);
+                $curr = $curr->left;
+            }
+            $curr = $stack->pop();
+            $res[] = $curr->val;
+            $curr = $curr->right;
+        }
+        return $res;
+    }
 }
 
 mock();
@@ -40,15 +57,21 @@ function mock()
 {
     echo "======= test case start =======\n";
     $root = new TreeNode(1);
-    $node1 = null;
     $node2 = new TreeNode(2);
     $node3 = new TreeNode(3);
-    $root->left = $node1;
-    $root->right = $node2;
-    $node2->left = $node3;
+    $node4 = new TreeNode(4);
+    $node5 = new TreeNode(5);
+    $node6 = new TreeNode(6);
 
-    $ret = (new Solution())->inorderTraversal($root);
-    var_dump($ret);
+    $root->left = $node2;
+    $root->right = $node3;
+
+    $node2->left = $node4;
+    $node2->right = $node5;
+    $node3->left = $node6;
+
+    var_dump((new Solution())->inorderTraversal($root));
+    var_dump((new Solution())->solution_2($root));
 
     echo "======= test case end\n";
 }
