@@ -50,7 +50,7 @@ function mock()
 {
     echo "======= test case start =======\n";
     $root = new TreeNode(1);
-    $node1 = new TreeNode(null);
+    $node1 = null;
     $node2 = new TreeNode(2);
     $node3 = new TreeNode(3);
     $root->left = $node1;
