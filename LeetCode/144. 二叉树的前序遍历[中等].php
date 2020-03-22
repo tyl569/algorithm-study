@@ -31,6 +31,27 @@ class Solution
         }
         return $res;
     }
+
+    function preorderTraversal_2($root)
+    {
+        if ($root == null) {
+            return [];
+        }
+        $stack = new SplStack();
+        $stack->push($root);
+        $res = [];
+        while (!$stack->isEmpty()) {
+            $cur = $stack->pop();
+            $res[] = $cur->val;
+            if ($cur->right != null) {
+                $stack->push($cur->right);
+            }
+            if ($cur->left != null) {
+                $stack->push($cur->left);
+            }
+        }
+        return $res;
+    }
 }
 
 mock();
@@ -46,8 +67,7 @@ function mock()
     $root->right = $node2;
     $node2->left = $node3;
 
-    $ret = (new Solution())->preorderTraversal($root);
-    var_dump($ret);
-
+    var_dump((new Solution())->preorderTraversal($root));
+    var_dump((new Solution())->preorderTraversal_2($root));
     echo "======= test case end\n";
 }
