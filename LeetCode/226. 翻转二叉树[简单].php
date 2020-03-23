@@ -28,6 +28,28 @@ class Solution
             $this->helper($node->right);
         }
     }
+
+    function invertTree_2($root)
+    {
+        if (empty($root)) {
+            return;
+        }
+        $queue = new SplQueue();
+        $queue->push($root);
+        while (!$queue->isEmpty()) {
+            $node = $queue->pop();
+            $tmp = $node->left;
+            $node->left = $node->right;
+            $node->right = $tmp;
+            if ($node->left != null) {
+                $queue->push($node->left);
+            }
+            if ($node->right != null) {
+                $queue->push($node->right);
+            }
+        }
+        return $root;
+    }
 }
 
 mock();
@@ -55,8 +77,9 @@ function mock()
     $node3->left = $node6;
     $node3->right = $node7;
 
-    $newRoot = (new Solution())->invertTree($root);
+//    $newRoot = (new Solution())->invertTree($root);
 
+    $newRoot = (new Solution())->invertTree_2($root);
     TreeNode::printTree($newRoot);
 
     echo "======= test case end =======\n";
