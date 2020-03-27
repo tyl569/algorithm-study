@@ -18,17 +18,16 @@ class Solution
         if ($node == null) {
             return true;
         }
-        $val = $node->val;
-        if ($lower !== null && $val <= $lower) {
+        if ($lower !== null && $node->val <= $lower) {
             return false;
         }
-        if ($upper !== null && $val >= $upper) {
+        if ($upper !== null && $node->val >= $upper) {
             return false;
         }
-        if (!$this->helper($node->left, $lower, $val)) {
+        if (!$this->helper($node->left, $lower, $node->val)) {
             return false;
         }
-        if (!$this->helper($node->right, $val, $upper)) {
+        if (!$this->helper($node->right, $node->val, $upper)) {
             return false;
         }
         return true;
