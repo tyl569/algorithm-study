@@ -4,8 +4,6 @@ require_once "../Struct/TreeNode.php";
 
 class Solution
 {
-    private $ans = null;
-
     /**
      * @param TreeNode $root
      * @param TreeNode $p
