@@ -12,7 +12,7 @@ class Solution
     function invertTree($root)
     {
         if ($root == null) {
-            return;
+            return null;
         }
         $this->helper($root);
         return $root;
@@ -41,11 +41,11 @@ class Solution
             $tmp = $node->left;
             $node->left = $node->right;
             $node->right = $tmp;
-            if ($node->left != null) {
-                $queue->push($node->left);
-            }
             if ($node->right != null) {
                 $queue->push($node->right);
+            }
+            if ($node->left != null) {
+                $queue->push($node->left);
             }
         }
         return $root;

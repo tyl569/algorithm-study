@@ -11,27 +11,9 @@ class Solution
      */
     function isValidBST($root)
     {
-        return $this->helper($root, null, null);
     }
 
-    function helper($node, $lower, $upper) {
-        if ($node == null) {
-            return true;
-        }
-        if ($lower !== null && $node->val <= $lower) {
-            return false;
-        }
-        if ($upper !== null && $node->val >= $upper) {
-            return false;
-        }
-        if (!$this->helper($node->left, $lower, $node->val)) {
-            return false;
-        }
-        if (!$this->helper($node->right, $node->val, $upper)) {
-            return false;
-        }
-        return true;
-    }
+
 }
 
 mock();
