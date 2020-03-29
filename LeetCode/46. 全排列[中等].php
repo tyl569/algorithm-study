@@ -17,11 +17,10 @@ class Solution
 
     function helper($nums, $start, $list)
     {
-        if (count($list) == count($nums)) {
+        if (count($nums) == count($list)) {
             $this->result[] = $list;
             return;
         }
-
         for ($i = 0; $i < count($nums); $i++) {
             if (in_array($nums[$i], $list)) {
                 continue;
@@ -30,6 +29,7 @@ class Solution
             $this->helper($nums, $start + 1, $list);
             array_pop($list);
         }
+
     }
 }
 
