@@ -11,11 +11,11 @@ class Solution
 
     function permute($nums)
     {
-        $this->helper($nums, 0, []);
+        $this->helper($nums, []);
         return $this->result;
     }
 
-    function helper($nums, $start, $list)
+    function helper($nums, $list)
     {
         if (count($nums) == count($list)) {
             $this->result[] = $list;
@@ -26,7 +26,7 @@ class Solution
                 continue;
             }
             $list[] = $nums[$i];
-            $this->helper($nums, $start + 1, $list);
+            $this->helper($nums, $list);
             array_pop($list);
         }
 
