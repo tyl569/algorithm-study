@@ -30,7 +30,7 @@ class Solution
             if ($used[$i]) {
                 continue;
             }
-            if ($i>0 && $strArr[$i] == $strArr[$i-1] && $used[$i-1]) {
+            if ($i > 0 && $strArr[$i] == $strArr[$i - 1] && $used[$i - 1]) {
                 continue;
             }
 
