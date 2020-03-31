@@ -17,19 +17,21 @@ class Solution
     {
         $this->board = $board;
         $this->word = $word;
-        for ($i = 0; $i < count($this->board); $i++) {
-            for ($j = 0; $j < count($this->board[0]); $j++) {
+
+        for ($i = 0; $i < count($board); $i++) {
+            for ($j = 0; $j < count($board[0]); $j++) {
                 $this->marked[$i][$j] = false;
             }
         }
-        for ($i = 0; $i < count($this->board); $i++) {
-            for ($j = 0; $j < count($this->board[0]); $j++) {
+        for ($i = 0; $i < count($board); $i++) {
+            for ($j = 0; $j < count($board[0]); $j++) {
                 if ($this->dfs($i, $j, 0)) {
                     return true;
                 }
             }
         }
         return false;
+
     }
 
     public function dfs($i, $j, $start)
