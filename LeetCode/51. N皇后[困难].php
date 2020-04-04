@@ -7,45 +7,45 @@ class Solution
      * @param Integer $n
      * @return String[][]
      */
-    private $trace = [];
+    private $result = [];
 
     function solveNQueens($n)
     {
         $matrix = [];
         for ($i = 0; $i < $n; $i++) {
-            for ($j = 0; $j < $n; $j++) {
-                $matrix[$i][$j] = ".";
-            }
+            $matrix[$i] = array_fill(0, $n, ".");
         }
-        $this->helper($matrix, 0, $n);
-        foreach ($this->trace as &$trace) {
+        $this->helper($matrix, $n, 0);
+        foreach ($this->result as &$result) {
             for ($i = 0; $i < $n; $i++) {
-                $trace[$i] = implode("", $trace[$i]);
+                $result[$i] = implode("", $result[$i]);
             }
         }
-        return $this->trace;
+        return $this->result;
     }
 
-    function helper(&$matrix, $row, $n)
+    function helper(&$matrix, $n, $row)
     {
         if ($row == $n) {
-            $this->trace[] = $matrix;
+            $this->result[] = $matrix;
             return;
         }
         for ($j = 0; $j < $n; $j++) {
-            if (!$this->valid($matrix, $row, $j)) {
+            if (!$this->invalid($matrix, $row, $j)) {
                 continue;
+
             }
             $matrix[$row][$j] = "Q";
-            $this->helper($matrix, $row + 1, $n);
+            $this->helper($matrix, $n, $row + 1);
             $matrix[$row][$j] = ".";
-
         }
+
     }
 
-    function valid($matrix, $row, $col)
+    function invalid($matrix, $row, $col)
     {
 
+        // 查看同行有没有Q
         for ($i = 0; $i < count($matrix); $i++) {
             if ($matrix[$i][$col] == "Q") {
                 return false;
@@ -53,17 +53,8 @@ class Solution
         }
 
         $i = $row - 1;
-        $j = $col + 1;
-        while ($i >= 0 && $j < count($matrix)) {
-            if ($matrix[$i][$j] == "Q") {
-                return false;
-            }
-            $i--;
-            $j++;
-        }
-
-        $i = $row - 1;
         $j = $col - 1;
+        // 向左上角查看有没有Q
         while ($i >= 0 && $j >= 0) {
             if ($matrix[$i][$j] == "Q") {
                 return false;
@@ -71,7 +62,18 @@ class Solution
             $i--;
             $j--;
         }
+        $i = $row - 1;
+        $j = $col + 1;
+        // 向右上角查看有没有Q
+        while ($i >= 0 && $j <= count($matrix[0]) - 1) {
+            if ($matrix[$i][$j] == "Q") {
+                return false;
+            }
+            $i--;
+            $j++;
+        }
         return true;
+
     }
 }
 
