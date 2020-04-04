@@ -35,6 +35,31 @@ class Solution
             $this->helper($right->left, $right->right, $res, $lever);
         }
     }
+
+    function levelOrder_2($root)
+    {
+        if ($root == null) {
+            return [];
+        }
+        $queue = new SplQueue();
+        $queue->push($root);
+        $level = 0;
+        while (!$queue->isEmpty()) {
+            $size = $queue->count();
+            for ($i = 0; $i < $size; $i++) {
+                $node = $queue->dequeue();
+                $res[$level][] = $node->val;
+                if ($node->left != null) {
+                    $queue->push($node->left);
+                }
+                if ($node->right != null) {
+                    $queue->push($node->right);
+                }
+            }
+            $level++;
+        }
+        return $res;
+    }
 }
 
 mock();
@@ -48,18 +73,16 @@ function mock()
 
     $node4 = new TreeNode(15);
     $node5 = new TreeNode(7);
-    $node6 = new TreeNode(8);
 
 
     $root->left = $node2;
     $root->right = $node3;
 
-    $node2->left = $node6;
-
     $node3->left = $node4;
     $node3->right = $node5;
 
     var_dump((new Solution())->levelOrder($root));
+    var_dump((new Solution())->levelOrder_2($root));
 
     echo "======= test case end\n";
 
