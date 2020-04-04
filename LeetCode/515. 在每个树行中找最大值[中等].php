@@ -39,6 +39,38 @@ class Solution
         }
 
     }
+
+    function largestValues_2($root)
+    {
+        if ($root == null) {
+            return [];
+        }
+        $queue = new SplQueue();
+        $queue->push($root);
+        $level = 0;
+        $res = [];
+        while (!$queue->isEmpty()) {
+            $size = $queue->count();
+            for ($i = 0; $i < $size; $i++) {
+                $node = $queue->dequeue();
+                $val = $node->val;
+                if (!isset($res[$level])) {
+                    $res[$level] = $val;
+                } else {
+                    $res[$level] = max($res[$level], $val);
+                }
+                if ($node->left != null) {
+                    $queue->push($node->left);
+                }
+                if ($node->right != null) {
+                    $queue->push($node->right);
+                }
+            }
+            $level++;
+
+        }
+        return $res;
+    }
 }
 
 mock();
@@ -64,8 +96,8 @@ function mock()
 
     $node3->right = $node6;
 
-    var_dump((new Solution())->largestValues($root));
-
+//    var_dump((new Solution())->largestValues($root));
+    var_dump((new Solution())->largestValues_2($root));
 
     echo "======= test case end =======\n";
 }
