@@ -13,11 +13,12 @@ class Solution
         $arr = [];
         for ($i = 0; $i < count($nums); $i++) {
             $diff = $target - $nums[$i];
-            if (isset($arr[$diff])) {
-                return [$arr[$diff], $i];
+            $arr[$diff] = $i;
+            if (isset($arr[$nums[$i]])) {
+                return [$i, $arr[$nums[$i]]];
             }
-            $arr[$nums[$i]] = $i;
         }
+        return [];
     }
 }
 
