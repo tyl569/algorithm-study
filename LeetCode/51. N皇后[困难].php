@@ -51,11 +51,6 @@ class Solution
                 return false;
             }
         }
-        for ($j = 0; $j < count($matrix[0]); $j++) {
-            if ($matrix[$row][$j] == "Q") {
-                return false;
-            }
-        }
 
         $i = $row - 1;
         $j = $col + 1;
