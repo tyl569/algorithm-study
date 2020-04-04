@@ -20,13 +20,15 @@ class Solution
     function fastPow($x, $n)
     {
         if ($n == 0) {
-            return 1.0;
+            return 1;
         }
-        $half = $this->fastPow($x, $n / 2);
+        $half = $this->fastPow($x, intval($n / 2));
         if ($n % 2 == 0) {
-            return $half * $half;
+            $res = $half * $half;
+        } else {
+            $res = $half * $half * $x;
         }
-        return $half * $half * $x;
+        return $res;
     }
 
     function myPow_2($x, $n)
@@ -44,6 +46,7 @@ class Solution
             $cur = $cur * $cur;
         }
         return $ans;
+
     }
 }
 
