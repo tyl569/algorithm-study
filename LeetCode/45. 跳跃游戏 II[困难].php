@@ -9,18 +9,21 @@ class Solution
      */
     private $result = [];
 
+    // 让开始起跳的位置尽量大
     function jump($nums)
     {
-        $ans = $start = 0;
+        $start = $ans = 0;
         $end = 1;
         while ($end < count($nums)) {
+
             $maxPos = 0;
             for ($i = $start; $i < $end; $i++) {
-                $maxPos = max($maxPos, $i + $nums[$i]);
+                $maxPos = max($maxPos, $nums[$i] + $i);
             }
             $start = $end;
             $end = $maxPos + 1;
             $ans++;
+
         }
         return $ans;
     }
