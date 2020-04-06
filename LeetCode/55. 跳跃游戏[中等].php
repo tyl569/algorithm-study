@@ -9,13 +9,14 @@ class Solution
      */
     function canJump($nums)
     {
-        $lastPost = count($nums) - 1;
+        $lastPos = count($nums) - 1;
         for ($i = count($nums) - 1; $i >= 0; $i--) {
-            if ($i + $nums[$i] >= $lastPost) {
-                $lastPost = $i;
+            if ($i + $nums[$i] >= $lastPos) {
+                $lastPos = $i;
             }
         }
-        return $lastPost == 0;
+        return $lastPos == 0;
+
     }
 
     function canJump_2($nums)
