@@ -14,12 +14,12 @@ class Solution
         $ans = $start = 0;
         $end = 1;
         while ($end < count($nums)) {
-            $maxPost = 0;
+            $maxPos = 0;
             for ($i = $start; $i < $end; $i++) {
-                $maxPost = max($maxPost, $i + $nums[$i]);
+                $maxPos = max($maxPos, $i + $nums[$i]);
             }
             $start = $end;
-            $end = $maxPost + 1;
+            $end = $maxPos + 1;
             $ans++;
         }
         return $ans;
