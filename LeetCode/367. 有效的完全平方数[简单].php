@@ -9,11 +9,8 @@ class Solution
      */
     function isPerfectSquare($num)
     {
-        if ($num == 1) {
-            return true;
-        }
         if ($num < 2) {
-            return false;
+            return true;
         }
         $left = 2;
         $right = $num / 2;
@@ -30,6 +27,19 @@ class Solution
             }
         }
         return false;
+    }
+
+    // 牛顿迭代法
+    function isPerfectSquare_2($num)
+    {
+        if ($num < 2) {
+            return true;
+        }
+        $x = intval($num / 2);
+        while ($x * $x > $num) {
+            $x = intval(($x + intval($num / $x)) / 2);
+        }
+        return $x * $x == $num;
     }
 }
 
@@ -49,5 +59,15 @@ function mock()
     $ret = (new Solution())->isPerfectSquare(16);
     var_dump($ret);
 
+    $ret = (new Solution())->isPerfectSquare_2(4);
+    var_dump($ret);
+    $ret = (new Solution())->isPerfectSquare_2(6);
+    var_dump($ret);
+    $ret = (new Solution())->isPerfectSquare_2(8);
+    var_dump($ret);
+    $ret = (new Solution())->isPerfectSquare_2(12);
+    var_dump($ret);
+    $ret = (new Solution())->isPerfectSquare_2(16);
+    var_dump($ret);
     echo "======= test case end =======\n";
 }
