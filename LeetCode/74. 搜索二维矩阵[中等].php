@@ -32,9 +32,9 @@ class Solution
     }
 
     // 二分查找
-    function searchMatrix2($matrix, $target)
+    function searchMatrix_2($matrix, $target)
     {
-        if ($matrix[count($matrix) - 1][count($matrix[0]) - 1] < $target) {
+        if ($target < $matrix[0][0] || $target > $matrix[count($matrix) - 1][count($matrix[0]) - 1]) {
             return false;
         }
         $m = count($matrix);
@@ -42,18 +42,19 @@ class Solution
         $start = 0;
         $end = $m * $n - 1;
         while ($start <= $end) {
-            $index = intval(($start + $end) / 2);
-            if ($matrix[intval($index / $n)][$index % $n] == $target) {
+            $mid = intval(($start + $end) / 2);
+            if ($target == $matrix[intval($mid / $n)][$mid % $n]) {
                 return true;
             }
-            if ($matrix[intval($index / $n)][$index % $n] > $target) {
-                $end = $index - 1;
+            if ($target > $matrix[intval($mid / $n)][$mid % $n]) {
+                $start = $mid + 1;
             } else {
-                $start = $index + 1;
+                $end = $mid - 1;
             }
-        }
 
+        }
         return false;
+
     }
 }
 
@@ -76,10 +77,13 @@ function mock()
     var_dump($ret);
 
     $num = 11;
-    $ret = (new Solution())->searchMatrix2($matrix, $num);
+    $ret = (new Solution())->searchMatrix_2($matrix, $num);
     var_dump($ret);
     $num = 22;
-    $ret = (new Solution())->searchMatrix2($matrix, $num);
+    $ret = (new Solution())->searchMatrix_2($matrix, $num);
+    var_dump($ret);
+    $num = 3;
+    $ret = (new Solution())->searchMatrix_2($matrix, $num);
     var_dump($ret);
     echo "========= test case end =========\n";
 }
