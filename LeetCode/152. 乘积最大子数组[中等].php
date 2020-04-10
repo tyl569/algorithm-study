@@ -9,8 +9,8 @@ class Solution
      */
     function maxProduct($nums)
     {
-        $imax = 1;
         $imin = 1;
+        $imax = 1;
         $max = PHP_INT_MIN;
         for ($i = 0; $i < count($nums); $i++) {
             if ($nums[$i] < 0) {
