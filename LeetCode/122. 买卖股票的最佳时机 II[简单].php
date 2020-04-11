@@ -24,8 +24,8 @@ class Solution
         $db_i_1 = PHP_INT_MIN;
 
         for ($i = 0; $i < count($prices); $i++) {
-            $db_i_0 = max($db_i_0, $db_i_1+$prices[$i]);
-            $db_i_1 = max($db_i_1, $db_i_0-$prices[$i]);
+            $db_i_0 = max($db_i_0, $db_i_1 + $prices[$i]);
+            $db_i_1 = max($db_i_1, $db_i_0 - $prices[$i]);
 
         }
         return $db_i_0;
