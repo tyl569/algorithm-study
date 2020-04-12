@@ -19,7 +19,9 @@ class Solution
                 if ($coins[$j] <= $i) {
                     $dp[$i] = min($dp[$i], $dp[$i - $coins[$j]] + 1);
                 }
+
             }
+
         }
         return $dp[$amount] > $amount ? -1 : $dp[$amount];
     }
@@ -31,5 +33,7 @@ function mock()
 {
     echo "======= test case start =======\n";
     echo (new Solution())->coinChange([1, 2, 5], 11) . "\n";
+    echo (new Solution())->coinChange([1, 2, 5], 10) . "\n";
+    echo (new Solution())->coinChange([2, 5, 10, 1], 27) . "\n";
     echo "======= test case end =======\n";
 }
