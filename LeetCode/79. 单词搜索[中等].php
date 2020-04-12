@@ -8,16 +8,15 @@ class Solution
      * @param String $word
      * @return Boolean
      */
-    private $step = [[-1, 0], [0, -1], [0, 1], [1, 0]];
-    private $board = [];
-    private $word;
+    private $step = [[0, -1], [0, 1], [-1, 0], [1, 0]];
     private $marked = [];
+    private $board = [];
+    private $word = "";
 
     function exist($board, $word)
     {
         $this->board = $board;
         $this->word = $word;
-
         for ($i = 0; $i < count($board); $i++) {
             for ($j = 0; $j < count($board[0]); $j++) {
                 $this->marked[$i][$j] = false;
@@ -31,24 +30,24 @@ class Solution
             }
         }
         return false;
-
     }
 
     public function dfs($i, $j, $start)
     {
         if ($start == strlen($this->word) - 1) {
-            return $this->board[$i][$j] == $this->word{$start};
+            return $this->word{$start} == $this->board[$i][$j];
         }
         if ($this->board[$i][$j] == $this->word{$start}) {
             $this->marked[$i][$j] = true;
-            for ($k = 0; $k < 4; $k++) {
-                $newX = $i + $this->step[$k][0];
-                $newY = $j + $this->step[$k][1];
-                if ($this->inArea($newX, $newY) && !$this->marked[$newX][$newY]) {
+            foreach ($this->step as $step) {
+                $newX = $i + $step[0];
+                $newY = $j + $step[1];
+                if ($this->inArea($newX, $newY) && $this->marked[$newX][$newY] == false) {
                     if ($this->dfs($newX, $newY, $start + 1)) {
                         return true;
                     }
                 }
+
             }
             $this->marked[$i][$j] = false;
         }
