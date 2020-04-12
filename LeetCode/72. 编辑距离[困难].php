@@ -30,9 +30,9 @@ class Solution
             return $this->dp($i - 1, $j - 1);
         } else {
             return min(
-                $this->dp($i, $j - 1) + 1, // 增加了一个字符
-                $this->dp($i - 1, $j) + 1, // 删除了一个字符
-                $this->dp($i - 1, $j - 1) + 1 // 替换字符
+                $this->dp($i - 1, $j) + 1, // 删除一个元素
+                $this->dp($i - 1, $j - 1) + 1, //替换一个元素
+                $this->dp($i, $j - 1) + 1 // 新增了一个元素
             );
         }
     }
@@ -48,19 +48,16 @@ class Solution
         for ($j = 1; $j <= $n; $j++) {
             $dp[0][$j] = $j;
         }
-
-
         for ($i = 1; $i <= $m; $i++) {
             for ($j = 1; $j <= $n; $j++) {
                 if ($word1{$i - 1} == $word2{$j - 1}) {
                     $dp[$i][$j] = $dp[$i - 1][$j - 1];
                 } else {
-                    $dp[$i][$j] = min($dp[$i - 1][$j] + 1, $dp[$i][$j - 1] + 1, $dp[$i - 1][$j - 1] + 1);
+                    $dp[$i][$j] = min($dp[$i - 1][$j] + 1, $dp[$i - 1][$j - 1] + 1, $dp[$i][$j - 1] + 1);
                 }
             }
         }
         return $dp[$m][$n];
-
     }
 }
 
