@@ -14,9 +14,9 @@ class Solution
         for ($i = 0; $i < strlen($s); $i++) {
             $dp[$i] = 0;
             if ($s{$i} == ")") {
-                $pre = $i - 1 - (isset($dp[$i - 1]) ? $dp[$i - 1] : 0);
-                if ($pre >= 0 && $s{$pre} == "(") {
-                    $dp[$i] = $dp[$i - 1] + 2 + (isset($dp[$pre - 1]) ? $dp[$pre - 1] : 0);
+                $pre = $i - ($dp[$i - 1] ?? 0) - 1;
+                if (isset($dp[$pre]) && $s{$pre} == "(" && $dp[$pre] >= 0) {
+                    $dp[$i] = $dp[$i - 1] + $dp[$pre - 1] + 2;
                 }
             }
             $max = max($max, $dp[$i]);
@@ -65,6 +65,8 @@ mock();
 function mock()
 {
     echo "======== test case start ======\n";
+    echo (new Solution())->longestValidParentheses(")(");
+    echo "\n";
     echo (new Solution())->longestValidParentheses("()()()()()");
     echo "\n";
     echo (new Solution())->longestValidParentheses("(()()()()()");
