@@ -21,7 +21,6 @@ class Solution
                 }
 
             }
-
         }
         return $dp[$amount] > $amount ? -1 : $dp[$amount];
     }
@@ -35,5 +34,6 @@ function mock()
     echo (new Solution())->coinChange([1, 2, 5], 11) . "\n";
     echo (new Solution())->coinChange([1, 2, 5], 10) . "\n";
     echo (new Solution())->coinChange([2, 5, 10, 1], 27) . "\n";
+    echo (new Solution())->coinChange([2], 3) . "\n";
     echo "======= test case end =======\n";
 }
