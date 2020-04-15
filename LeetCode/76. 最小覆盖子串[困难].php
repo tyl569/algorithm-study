@@ -22,14 +22,14 @@ class Solution
         }
 
         while ($right < strlen($s)) {
-            $char = $s{$right};
-            if ($target[$char]) {
-                $windows[$char] = isset($windows[$char]) ? $windows[$char] + 1 : 1;
-                if ($windows[$char] == $target[$char]) { // 查看个数是不是匹配
+            $char1 = $s{$right};
+            if ($target[$char1]) {
+                $windows[$char1] = isset($windows[$char1]) ? $windows[$char1] + 1 : 1;
+                if ($windows[$char1] == $target[$char1]) {
                     $match++;
                 }
             }
-            $right++; // 继续右移
+            $right++;
             while ($match == count($target)) {
                 if ($right - $left < $minLen) {
                     $start = $left;
@@ -43,10 +43,9 @@ class Solution
                     }
                 }
                 $left++;
-
             }
-
         }
+
         return $minLen == PHP_INT_MAX ? "" : substr($s, $start, $minLen);
     }
 
