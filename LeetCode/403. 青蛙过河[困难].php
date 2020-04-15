@@ -9,7 +9,7 @@ class Solution
      */
     function canCross($stones)
     {
-        return $this->helper($stones, 1, 0);
+        return $this->helper($stones, 0, 0);
     }
 
     function helper($stones, $k, $cur)
