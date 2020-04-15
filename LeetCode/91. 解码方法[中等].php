@@ -35,25 +35,21 @@ class Solution
     function numDecodings2($s)
     {
         $len = strlen($s);
+        $dp[$len] = 1;
         if ($s{$len - 1} == 0) {
             $dp[$len - 1] = 0;
         } else {
             $dp[$len - 1] = 1;
         }
-        if ($s{$len - 2} == 0) {
-            $dp[$len - 2] = 0;
-        } else {
-            $dp[$len - 2] = $dp[$len - 1] + (($s{$len - 2} * 10 + $s{$len - 1}) < 27 ? 1 : 0);
-        }
-        for ($i = $len - 3; $i >= 0; $i--) {
+        for ($i = $len - 2; $i >= 0; $i--) {
             if ($s{$i} == 0) {
                 $dp[$i] = 0;
             } else {
                 $dp[$i] = $dp[$i + 1] + ((($s{$i} * 10 + $s{$i + 1}) < 27) ? $dp[$i + 2] : 0);
             }
-
         }
         return $dp[0];
+
     }
 }
 
