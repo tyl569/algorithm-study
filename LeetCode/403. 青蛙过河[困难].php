@@ -14,7 +14,6 @@ class Solution
 
     function helper($stones, $k, $cur)
     {
-
         for ($i = $cur + 1; $i < count($stones); $i++) {
             $gap = $stones[$i] - $stones[$cur];
             if ($gap >= $k - 1 && $gap <= $k + 1) {
