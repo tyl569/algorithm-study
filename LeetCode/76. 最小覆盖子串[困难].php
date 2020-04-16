@@ -25,13 +25,14 @@ class Solution
             $char1 = $s{$right};
             if ($target[$char1]) {
                 $windows[$char1] = isset($windows[$char1]) ? $windows[$char1] + 1 : 1;
-                if ($windows[$char1] == $target[$char1]) {
+                if ($target[$char1] == $windows[$char1]) {
                     $match++;
                 }
             }
             $right++;
+
             while ($match == count($target)) {
-                if ($right - $left < $minLen) {
+                if ($right - $left <= $minLen) {
                     $start = $left;
                     $minLen = $right - $left;
                 }
@@ -42,8 +43,11 @@ class Solution
                         $match--;
                     }
                 }
+
                 $left++;
             }
+
+
         }
 
         return $minLen == PHP_INT_MAX ? "" : substr($s, $start, $minLen);
