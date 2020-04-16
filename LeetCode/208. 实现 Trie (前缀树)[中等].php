@@ -50,13 +50,12 @@ class Trie
     function search($word)
     {
         $cur = $this->root;
-        for ($i = 0; $i < strlen($word); $i++) {
-            $c = substr($word, $i, 1);
-            if (!isset($cur->next[$c])) {
+        $arr = str_split($word);
+        foreach ($arr as $char) {
+            if (!isset($cur->next[$char])) {
                 return false;
             }
-            $cur = $cur->next[$c];
-
+            $cur = $cur->next[$char];
         }
         return $cur->isWord;
     }
@@ -69,12 +68,12 @@ class Trie
     function startsWith($prefix)
     {
         $cur = $this->root;
-        for ($i = 0; $i < strlen($prefix); $i++) {
-            $c = substr($prefix, $i, 1);
-            if (!isset($cur->next[$c])) {
+        $arr = str_split($prefix);
+        foreach ($arr as $char) {
+            if (!isset($cur->next[$char])) {
                 return false;
             }
-            $cur = $cur->next[$c];
+            $cur = $cur->next[$char];
         }
         return true;
     }
