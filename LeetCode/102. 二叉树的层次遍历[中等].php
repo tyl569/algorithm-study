@@ -11,30 +11,27 @@ class Solution
      */
     function levelOrder($root)
     {
-        if ($root == null) {
+        if (empty($root)) {
             return [];
         }
-
-        $res[0][] = $root->val;
-        $level = 1;
-        $this->helper($root->left, $root->right, $res, $level);
+        $res[0] = [$root->val];
+        $this->helper($root->left, $root->right, $res, 1);
         return $res;
     }
 
     function helper($left, $right, &$res, $lever)
     {
-        if ($left != null || $right != null) {
-            if ($left != null) {
-                $res[$lever][] = $left->val;
-            }
-            if ($right != null) {
-                $res[$lever][] = $right->val;
-            }
-            $lever++;
-            $this->helper($left->left, $left->right, $res, $lever);
-            $this->helper($right->left, $right->right, $res, $lever);
+        if ($left != null) {
+            $res[$lever][] = $left->val;
+            $this->helper($left->left, $left->right, $res, $lever + 1);
         }
+        if ($right != null) {
+            $res[$lever][] = $right->val;
+            $this->helper($right->left, $right->right, $res, $lever + 1);
+        }
+
     }
+
 
     function levelOrder_2($root)
     {
@@ -56,7 +53,9 @@ class Solution
                     $queue->push($node->right);
                 }
             }
+
             $level++;
+
         }
         return $res;
     }
