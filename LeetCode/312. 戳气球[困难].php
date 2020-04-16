@@ -64,6 +64,33 @@ class Solution
 
         return $maxCoin;
     }
+
+    function maxCoins_3($nums)
+    {
+        if (empty($nums)) {
+            return 0;
+        }
+        $dp = [];
+        for ($i = 0; $i < count($nums); $i++) {
+            for ($j = 0; $j < count($nums) - $i; $j++) {
+                $this->dp($dp, $nums, $j, $j + $i);
+            }
+        }
+        return $dp[0][count($nums) - 1];
+
+    }
+
+    function dp(&$dp, $nums, $start, $end)
+    {
+        $max = 0;
+        for ($i = $start; $i <= $end; $i++) {
+            $cur = ($start - 1 < 0 ? 1 : $nums[$start - 1]) * $nums[$i] * ($end + 1 > count($nums) - 1 ? 1 : $nums[$end + 1]);
+            $leftMax = ($start > $i - 1 ? 0 : $dp[$start][$i - 1]);
+            $rightMax = ($end < $i + 1 ? 0 : $dp[$i + 1][$end]);
+            $max = max($max, $cur + $leftMax + $rightMax);
+        }
+        $dp[$start][$end] = $max;
+    }
 }
 
 mock();
@@ -73,5 +100,6 @@ function mock()
     echo "======= test case start =======\n";
     echo (new Solution())->maxCoins([3, 1, 5, 8]) . "\n";
     echo (new Solution())->maxCoins_2([3, 1, 5, 8]) . "\n";
+    echo (new Solution())->maxCoins_3([3, 1, 5, 8]) . "\n";
     echo "======= test case end =======\n";
 }
