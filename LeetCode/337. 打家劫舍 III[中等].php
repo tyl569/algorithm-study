@@ -38,8 +38,8 @@ class Solution
         $left = $this->dp($node->left);
         $right = $this->dp($node->right);
         $notDoIt = max($left) + max($right); // 不抢当前节点
-        $doIt = $node->val + $left[0] + $right[0]; // 抢当前的节点
-        return [$notDoIt, $doIt];
+        $doIt = $node->val + $left[0] + $right[0]; // 抢当前的节点，但是下层不能抢
+        return [$notDoIt, $doIt]; // 第一个元素代表不抢当前节点的收益
 
     }
 }
