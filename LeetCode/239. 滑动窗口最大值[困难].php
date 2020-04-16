@@ -22,14 +22,15 @@ class Solution
         $res = [];
         $windows = [];
         for ($i = 0; $i < count($nums); $i++) {
-            if ($windows[0] + $k <= $i) {
+            if ($windows[0] + $k <= $i) {// 如果窗口的长度和$k相等, 从前面弹出数字
                 array_shift($windows);
             }
+
+            // 如果当前的数字比窗口最后的数字大，则弹出
             while (!empty($windows) && $nums[$i] >= $nums[end($windows)]) {
                 array_pop($windows);
             }
             $windows[] = $i;
-
             if ($i >= $k - 1) {
                 $res[] = $nums[$windows[0]];
             }
