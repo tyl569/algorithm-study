@@ -17,12 +17,12 @@ class Solution
         return $arr;
     }
 
-    function maxSlidingWindow2($nums, $k)
+    function maxSlidingWindow_2($nums, $k)
     {
         $res = [];
         $windows = [];
         for ($i = 0; $i < count($nums); $i++) {
-            if ($windows[0] + $k <= $i) {// 如果窗口的长度和$k相等, 从前面弹出数字
+            if ($windows[0] + $k <= $i) {
                 array_shift($windows);
             }
 
@@ -39,8 +39,8 @@ class Solution
     }
 }
 
-$ret = (new Solution())->minSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3);
+$ret = (new Solution())->maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3);
 var_dump($ret);
 
-$ret = (new Solution())->minSlidingWindow2([1, 3, -1, -3, 5, 3, 6, 7], 3);
+$ret = (new Solution())->maxSlidingWindow_2([1, 3, -1, -3, 5, 3, 6, 7], 3);
 var_dump($ret);
