@@ -25,29 +25,23 @@ class Solution
         return max($doIt, $undoIt);
     }
 
-//    private $memo = [];
-//
-//    function rob_2($root)
-//    {
-//        return $this->helper_2($root);
-//    }
-//
-//    function helper_2($node)
-//    {
-//        if ($node == null) {
-//            return 0;
-//        }
-//        if ($this->memo[$node]) {
-//            return $this->memo[$node];
-//        }
-//        $doIt = $node->val + ($node->left == null ? 0 : $this->helper_2($node->left->left) + $this->helper_2($node->left->right))
-//            + ($node->right == null ? 0 : $this->helper_2($node->right->left) + $this->helper_2($node->right->right));
-//        $undoIt = $this->helper_2($node->left) + $this->helper_2($node->right);
-//        $res = max($doIt, $undoIt);
-//        $this->memo[$node] = $res;
-//        return $res;
-//
-//    }
+    function rob_2($root)
+    {
+        return max($this->dp($root));
+    }
+
+    function dp($node)
+    {
+        if ($node == null) {
+            return [0, 0];
+        }
+        $left = $this->dp($node->left);
+        $right = $this->dp($node->right);
+        $notDoIt = max($left) + max($right); // 不抢当前节点
+        $doIt = $node->val + $left[0] + $right[0]; // 抢当前的节点
+        return [$notDoIt, $doIt];
+
+    }
 }
 
 mock();
@@ -68,6 +62,6 @@ function mock()
 
     echo (new Solution())->rob($root) . "\n";
 
-//    echo (new Solution())->rob_2($root) . "\n";
+    echo (new Solution())->rob_2($root) . "\n";
     echo "======= test case end =======\n";
 }
