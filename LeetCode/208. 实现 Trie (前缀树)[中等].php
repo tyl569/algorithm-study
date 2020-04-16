@@ -27,9 +27,9 @@ class Trie
         if (strlen($word) == 0) {
             return;
         }
-        $arr = str_split($word);
         $cur = $this->root;
-        foreach ($arr as $char) {
+        for ($i = 0; $i < strlen($word); $i++) {
+            $char = substr($word, $i, 1);
             if (!isset($cur->next[$char])) {
                 $cur->next[$char] = new TrieNode();
             }
@@ -50,8 +50,8 @@ class Trie
     function search($word)
     {
         $cur = $this->root;
-        $arr = str_split($word);
-        foreach ($arr as $char) {
+        for ($i = 0; $i < strlen($word); $i++) {
+            $char = substr($word, $i, 1);
             if (!isset($cur->next[$char])) {
                 return false;
             }
@@ -68,8 +68,8 @@ class Trie
     function startsWith($prefix)
     {
         $cur = $this->root;
-        $arr = str_split($prefix);
-        foreach ($arr as $char) {
+        for ($i = 0; $i < strlen($prefix); $i++) {
+            $char = substr($prefix, $i, 1);
             if (!isset($cur->next[$char])) {
                 return false;
             }
