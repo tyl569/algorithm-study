@@ -36,9 +36,6 @@ class Solution
 
     function findCircleNum_2($M)
     {
-        if (empty($M)) {
-            return 0;
-        }
         $uf = new UF(count($M));
         for ($i = 0; $i < count($M); $i++) {
             for ($j = 0; $j < count($M[0]); $j++) {
@@ -53,9 +50,9 @@ class Solution
 
 class UF
 {
-    private $count = 0;
-    private $parent = [];
     private $size = [];
+    private $parent = [];
+    private $count = 0;
 
     /**
      * @return array
@@ -66,6 +63,14 @@ class UF
     }
 
     /**
+     * @return array
+     */
+    public function getParent(): array
+    {
+        return $this->parent;
+    }
+
+    /**
      * @return int
      */
     public function getCount(): int
@@ -73,31 +78,24 @@ class UF
         return $this->count;
     }
 
-    /**
-     * @return int
-     */
-    public function getParent(): array
-    {
-        return $this->parent;
-    }
-
-    function __construct($n)
+    public function __construct($n)
     {
         $this->count = $n;
         for ($i = 0; $i < $n; $i++) {
             $this->parent[$i] = $i;
             $this->size[$i] = $i;
         }
+
     }
 
-    function union($a, $b)
+    public function union($a, $b)
     {
         $rootA = $this->find($a);
         $rootB = $this->find($b);
         if ($rootA == $rootB) {
             return;
         }
-        if ($this->size[$rootA] > $this->size[$rootB]) {
+        if ($rootA >= $rootB) {
             $this->parent[$rootB] = $rootA;
             $this->size[$rootA] += $this->size[$rootB];
         } else {
@@ -107,21 +105,20 @@ class UF
         $this->count--;
     }
 
-    function find($x)
+    public function connected($a, $b)
     {
-        while ($this->parent[$x] != $x) {
+        $rootA = $this->find($a);
+        $rootB = $this->find($b);
+        return $rootB == $rootA;
+    }
+
+    public function find($x)
+    {
+        while ($x != $this->parent[$x]) {
             $this->parent[$x] = $this->parent[$this->parent[$x]];
             $x = $this->parent[$x];
         }
         return $x;
-
-    }
-
-    function connected($a, $b)
-    {
-        $rootA = $this->find($a);
-        $rootB = $this->find($b);
-        return $rootA == $rootB;
     }
 }
 
