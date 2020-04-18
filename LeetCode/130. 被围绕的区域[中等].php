@@ -14,6 +14,12 @@ class Solution
         $dummy = $m * $n;
         $uf = new UF($dummy + 1);
 
+        $step = [
+            [0, 1],
+            [0, -1],
+            [1, 0],
+            [-1, 0]
+        ];
         for ($i = 0; $i < $m; $i++) {
             for ($j = 0; $j < $n; $j++) {
                 if ($board[$i][$j] == "O") {
@@ -21,17 +27,12 @@ class Solution
                     if ($i == 0 || $i == $m - 1 || $j == 0 || $j == $n - 1) {
                         $uf->union($this->node($i, $j, $n), $dummy);
                     } else {
-                        if (isset($board[$i - 1][$j]) && $board[$i - 1][$j] == "O") { // 连通当前和上个位置
-                            $uf->union($this->node($i, $j, $n), $this->node($i - 1, $j, $n));
-                        }
-                        if (isset($board[$i + 1][$j]) && $board[$i + 1][$j] == "O") { // 联通当前和下个位置
-                            $uf->union($this->node($i, $j, $n), $this->node($i + 1, $j, $n));
-                        }
-                        if (isset($board[$i][$j - 1]) && $board[$i][$j - 1] == "O") { // 联通当前和左边的位置
-                            $uf->union($this->node($i, $j, $n), $this->node($i, $j - 1, $n));
-                        }
-                        if (isset($board[$i][$j + 1]) && $board[$i][$j + 1] == "O") {// 联通当前和右边位置
-                            $uf->union($this->node($i, $j, $n), $this->node($i, $j + 1, $n));
+                        for ($k = 0; $k < count($step); $k++) {
+                            $newI = $i + $step[$k][0];
+                            $newJ = $j + $step[$k][1];
+                            if (isset($board[$newI][$newJ]) && $board[$newI][$newJ] == "O") {
+                                $uf->union($this->node($i, $j, $n), $this->node($newI, $newJ, $n));
+                            }
                         }
                     }
                 }
