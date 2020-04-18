@@ -66,6 +66,7 @@ class Solution
         for ($i = 0; $i < count($board); $i++) {
             for ($j = 0; $j < count($board[0]); $j++) {
                 $isEdge = ($i == 0 || $i == count($board) - 1 || $j == 0 | $j == count($board[0]) - 1);
+                // 从边缘开始dfs, 把和边缘连通的O检索出来，替换成#
                 if ($isEdge && $board[$i][$j] == "O") {
                     $this->dfs($board, $i, $j);
                 }
