@@ -10,10 +10,7 @@ class Solution
     function generateParenthesis($n)
     {
         $arr = [];
-        $str = "";
-        $open = "";
-        $close = "";
-        $this->backtrack($arr, $open, $close, $n, $str);
+        $this->backtrack($arr, 0, 0, $n, "");
         return $arr;
     }
 
@@ -21,7 +18,7 @@ class Solution
     {
         if (strlen($str) == 2 * $n) {
             $arr[] = $str;
-            return;
+            return $arr;
         }
         if ($open < $n) {
             $this->backtrack($arr, $open + 1, $close, $n, $str . "(");
