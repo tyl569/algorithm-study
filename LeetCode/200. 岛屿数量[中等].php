@@ -23,9 +23,7 @@ class Solution
 
     function dfs(&$grid, $r, $c)
     {
-        $row = count($grid);
-        $col = count($grid[0]);
-        if ($r < 0 || $c < 0 || $r >= $row || $c >= $col || $grid[$r][$c] == 0) {
+        if (!isset($grid[$r][$c]) || $grid[$r][$c] == 0) {
             return;
         }
         $grid[$r][$c] = 0;
