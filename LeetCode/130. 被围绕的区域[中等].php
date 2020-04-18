@@ -13,52 +13,44 @@ class Solution
         $n = count($board[0]);
         $dummy = $m * $n;
         $uf = new UF($dummy + 1);
+
         for ($i = 0; $i < $m; $i++) {
-            if ($board[$i][0] == 'O') {
-                $uf->union($i * $n, $dummy);
-            }
-            if ($board[$i][$n - 1] == 'O') {
-                $uf->union($i * $n + $n - 1, $dummy);
-            }
-        }
-
-        for ($j = 0; $j < $n; $j++) {
-            if ($board[0][$j] == 'O') {
-                $uf->union($j, $dummy);
-            }
-            if ($board[$m - 1][$j] == 'O') {
-                $uf->union($n * ($m - 1) + $j, $dummy);
-            }
-        }
-
-        $step = [
-            [0, 1],
-            [0, -1],
-            [1, 0],
-            [-1, 0]
-        ];
-
-        for ($i = 1; $i < $m - 1; $i++) {
-            for ($j = 1; $j < $n - 1; $j++) {
-                if ($board[$i][0] == 'O') {
-                    for ($k = 0; $k < 4; $k++) {
-                        $newX = $i + $step[$k][0];
-                        $newY = $i + $step[$k][1];
-                        if ($board[$newX][$newY] == 'O') {
-                            $uf->union($newX * $n + $newY, $i * $n + $j);
+            for ($j = 0; $j < $n; $j++) {
+                if ($board[$i][$j] == "O") {
+                    if ($i == 0 || $i == $m - 1 || $j == 0 || $j == $n - 1) {
+                        $uf->union($this->node($i, $j, $n), $dummy);
+                    } else {
+                        if ($i > 0 && $board[$i - 1][$j] == "O") {
+                            $uf->union($this->node($i, $j, $n), $this->node($i - 1, $j, $n));
+                        }
+                        if ($i < $m - 1 && $board[$i + 1][$j] == "O") {
+                            $uf->union($this->node($i, $j, $n), $this->node($i + 1, $j, $n));
+                        }
+                        if ($j > 0 && $board[$i][$j - 1] == "O") {
+                            $uf->union($this->node($i, $j, $n), $this->node($i, $j - 1, $n));
+                        }
+                        if ($i < $n - 1 && $board[$i][$j + 1] == "O") {
+                            $uf->union($this->node($i, $j, $n), $this->node($i, $j + 1, $n));
                         }
                     }
                 }
             }
         }
 
-        for ($i = 1; $i < $m - 1; $i++) {
-            for ($j = 1; $j < $n - 1; $j++) {
-                if (!$uf->connected($dummy, $i * $n + $j)) {
-                    $board[$i][$j] = 'X';
+        for ($i = 0; $i < $m; $i++) {
+            for ($j = 0; $j < $n; $j++) {
+                if ($uf->connected($this->node($i, $j, $n), $dummy)) {
+                    $board[$i][$j] = "O";
+                } else {
+                    $board[$i][$j] = "X";
                 }
             }
         }
+    }
+
+    function node($i, $j, $n)
+    {
+        return $i * $n + $j;
     }
 
     function solve_2(&$board)
@@ -182,8 +174,8 @@ function mock()
         ["X", "X", "O", "X"],
         ["X", "O", "X", "X"],
     ];
-//    (new Solution())->solve($board);
-    (new Solution())->solve_2($board);
+    (new Solution())->solve($board);
+//    (new Solution())->solve_2($board);
     var_dump($board);
 
     echo "======= test case end =======\n";
