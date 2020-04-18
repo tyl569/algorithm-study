@@ -11,16 +11,12 @@ class Solution
 
     function solveNQueens($n)
     {
-        $matrix = [];
+        $default = "";
         for ($i = 0; $i < $n; $i++) {
-            $matrix[$i] = array_fill(0, $n, ".");
+            $default .= ".";
         }
+        $matrix = array_fill(0, $n, $default);
         $this->helper($matrix, $n, 0);
-        foreach ($this->result as &$result) {
-            for ($i = 0; $i < $n; $i++) {
-                $result[$i] = implode("", $result[$i]);
-            }
-        }
         return $this->result;
     }
 
@@ -35,19 +31,18 @@ class Solution
                 continue;
 
             }
-            $matrix[$row][$j] = "Q";
+            $matrix[$row]{$j} = "Q";
             $this->helper($matrix, $n, $row + 1);
-            $matrix[$row][$j] = ".";
+            $matrix[$row]{$j} = ".";
         }
 
     }
 
     function invalid($matrix, $row, $col)
     {
-
         // 检查当前这一列是否有皇后
         for ($i = 0; $i < count($matrix); $i++) {
-            if ($matrix[$i][$col] == "Q") {
+            if ($matrix[$i]{$col} == "Q") {
                 return false;
             }
         }
@@ -56,7 +51,7 @@ class Solution
         $j = $col - 1;
         // 向左上角查看有没有Q
         while ($i >= 0 && $j >= 0) {
-            if ($matrix[$i][$j] == "Q") {
+            if ($matrix[$i]{$j} == "Q") {
                 return false;
             }
             $i--;
@@ -65,8 +60,8 @@ class Solution
         $i = $row - 1;
         $j = $col + 1;
         // 向右上角查看有没有Q
-        while ($i >= 0 && $j <= count($matrix[0]) - 1) {
-            if ($matrix[$i][$j] == "Q") {
+        while ($i >= 0 && $j <= strlen($matrix[0]) - 1) {
+            if ($matrix[$i]{$j} == "Q") {
                 return false;
             }
             $i--;
