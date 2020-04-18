@@ -11,16 +11,12 @@ class Solution
 
     function solveNQueens($n)
     {
-        $matrix = [];
+        $default = "";
         for ($i = 0; $i < $n; $i++) {
-            $matrix[$i] = array_fill(0, $n, ".");
+            $default .= ".";
         }
+        $matrix = array_fill(0, $n, $default);
         $this->helper($matrix, $n, 0);
-        foreach ($this->result as &$result) {
-            for ($i = 0; $i < $n; $i++) {
-                $result[$i] = implode("", $result[$i]);
-            }
-        }
         return $this->result;
     }
 
@@ -28,39 +24,39 @@ class Solution
     {
         if ($row == $n) {
             $this->result[] = $matrix;
+            return;
         }
-        for ($j = 0; $j < $n; $j++) { // 按照列进行遍历
+        for ($j = 0; $j < $n; $j++) {
             if (!$this->invalid($matrix, $row, $j)) {
                 continue;
             }
-            $matrix[$row][$j] = "Q";
+            $matrix[$row]{$j} = "Q";
             $this->helper($matrix, $n, $row + 1);
-            $matrix[$row][$j] = ".";
+            $matrix[$row]{$j} = ".";
         }
+
     }
 
     function invalid($matrix, $row, $col)
     {
-        // 检查当前这一列是否有皇后
-        for ($i = 0; $i < count($matrix[0]); $i++) {
-            if ($matrix[$i][$col] == "Q") {
+        for ($i = 0; $i < count($matrix); $i++) {
+            if ($matrix[$i]{$col} == "Q") {
                 return false;
             }
         }
         $i = $row - 1;
         $j = $col - 1;
-        while ($i >= 0 && $j >= 0) {
-            if ($matrix[$i][$j] == "Q") {
+        while ($i >= 0 && $j >= 0) { // 从当前位置，向左上角检索
+            if ($matrix[$i]{$j} == "Q") {
                 return false;
             }
             $i--;
             $j--;
         }
-
         $i = $row - 1;
         $j = $col + 1;
-        while ($i >= 0 && $j < count($matrix[0])) {
-            if ($matrix[$i][$j] == "Q") {
+        while ($i >= 0 && $j < count($matrix)) { // 从当前位置想右上角检索
+            if ($matrix[$i]{$j} == "Q") {
                 return false;
             }
             $i--;
