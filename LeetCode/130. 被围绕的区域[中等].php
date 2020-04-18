@@ -17,19 +17,20 @@ class Solution
         for ($i = 0; $i < $m; $i++) {
             for ($j = 0; $j < $n; $j++) {
                 if ($board[$i][$j] == "O") {
+                    // 如果边缘是O，则和$dummy进行连通
                     if ($i == 0 || $i == $m - 1 || $j == 0 || $j == $n - 1) {
                         $uf->union($this->node($i, $j, $n), $dummy);
                     } else {
-                        if ($i > 0 && $board[$i - 1][$j] == "O") {
+                        if (isset($board[$i - 1][$j]) && $board[$i - 1][$j] == "O") { // 连通当前和上个位置
                             $uf->union($this->node($i, $j, $n), $this->node($i - 1, $j, $n));
                         }
-                        if ($i < $m - 1 && $board[$i + 1][$j] == "O") {
+                        if (isset($board[$i + 1][$j]) && $board[$i + 1][$j] == "O") { // 联通当前和下个位置
                             $uf->union($this->node($i, $j, $n), $this->node($i + 1, $j, $n));
                         }
-                        if ($j > 0 && $board[$i][$j - 1] == "O") {
+                        if (isset($board[$i][$j - 1]) && $board[$i][$j - 1] == "O") { // 联通当前和左边的位置
                             $uf->union($this->node($i, $j, $n), $this->node($i, $j - 1, $n));
                         }
-                        if ($i < $n - 1 && $board[$i][$j + 1] == "O") {
+                        if (isset($board[$i][$j + 1]) && $board[$i][$j + 1] == "O") {// 联通当前和右边位置
                             $uf->union($this->node($i, $j, $n), $this->node($i, $j + 1, $n));
                         }
                     }
