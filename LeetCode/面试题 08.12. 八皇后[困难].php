@@ -28,33 +28,27 @@ class Solution
     {
         if ($row == $n) {
             $this->result[] = $matrix;
-            return;
         }
-        for ($j = 0; $j < $n; $j++) {
+        for ($j = 0; $j < $n; $j++) { // 按照列进行遍历
             if (!$this->invalid($matrix, $row, $j)) {
                 continue;
-
             }
             $matrix[$row][$j] = "Q";
             $this->helper($matrix, $n, $row + 1);
             $matrix[$row][$j] = ".";
         }
-
     }
 
     function invalid($matrix, $row, $col)
     {
-
         // 检查当前这一列是否有皇后
-        for ($i = 0; $i < count($matrix); $i++) {
+        for ($i = 0; $i < count($matrix[0]); $i++) {
             if ($matrix[$i][$col] == "Q") {
                 return false;
             }
         }
-
         $i = $row - 1;
         $j = $col - 1;
-        // 向左上角查看有没有Q
         while ($i >= 0 && $j >= 0) {
             if ($matrix[$i][$j] == "Q") {
                 return false;
@@ -62,10 +56,10 @@ class Solution
             $i--;
             $j--;
         }
+
         $i = $row - 1;
         $j = $col + 1;
-        // 向右上角查看有没有Q
-        while ($i >= 0 && $j <= count($matrix[0]) - 1) {
+        while ($i >= 0 && $j < count($matrix[0])) {
             if ($matrix[$i][$j] == "Q") {
                 return false;
             }
@@ -73,7 +67,6 @@ class Solution
             $j++;
         }
         return true;
-
     }
 }
 
@@ -81,9 +74,9 @@ mock();
 
 function mock()
 {
-    echo "======= test case start =======\n";
-
+    echo "====== test case start =======\n";
     var_dump((new Solution())->solveNQueens(4));
-    echo "======= test case end =======\n";
-}
 
+
+    echo "====== test case end =======\n";
+}
