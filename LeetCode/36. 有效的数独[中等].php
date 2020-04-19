@@ -13,17 +13,12 @@ class Solution
         $rows = [];
         $boxes = [];
         for ($i = 0; $i < 9; $i++) {
-            $cols[$i] = [];
-            $rows[$i] = [];
-            $boxes[$i] = [];
-        }
-        for ($i = 0; $i < 9; $i++) {
             for ($j = 0; $j < 9; $j++) {
-                $num = $board[$i][$j];
-                if ($num != ".") {
-                    $boxIndex = intval($i / 3) * 3 + intval($j / 3);
+                if ($board[$i][$j] != ".") {
+                    $num = $board[$i][$j];
                     $rows[$i][$num] = isset($rows[$i][$num]) ? $rows[$i][$num] + 1 : 1;
                     $cols[$j][$num] = isset($cols[$j][$num]) ? $cols[$j][$num] + 1 : 1;
+                    $boxIndex = intval($i / 3) * 3 + intval($j / 3);
                     $boxes[$boxIndex][$num] = isset($boxes[$boxIndex][$num]) ? $boxes[$boxIndex][$num] + 1 : 1;
                     if ($rows[$i][$num] > 1 || $cols[$j][$num] > 1 || $boxes[$boxIndex][$num] > 1) {
                         return false;
