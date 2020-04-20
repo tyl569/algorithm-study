@@ -83,6 +83,38 @@ class Solution
         return 0;
     }
 
+    function ladderLength_3($beginWord, $endWord, $wordList)
+    {
+        if (!in_array($endWord, $wordList)) {
+            return 0;
+        }
+        $queue = new SplQueue();
+        $visited = [];
+        $queue->push($beginWord);
+        $count = 0;
+        while (!$queue->isEmpty()) {
+            $size = $queue->count();
+            $count++;
+            for ($i = 0; $i < $size; $i++) {
+                $str = $queue->dequeue();
+                foreach ($wordList as $index => $word) {
+                    if (isset($visited[$index]) && $visited[$index] == true) { // 相比做了一个小优化
+                        continue;
+                    }
+                    if (!$this->canConvert($str, $word)) {
+                        continue;
+                    }
+                    if ($word == $endWord) { // 如果找到了目标字符串
+                        return $count + 1;
+                    }
+                    $visited[$index] = true;
+                    $queue->push($word);
+                }
+            }
+        }
+        return 0;
+    }
+
     function canConvert($str1, $str2)
     {
         if (strlen($str1) != strlen($str2)) {
@@ -112,12 +144,20 @@ function mock()
     var_dump((new Solution())->ladderLength("hit", "log", ["hot", "dot", "dog", "lot", "log"]));
     var_dump((new Solution())->ladderLength("hot", "dog", ["hot", "dog"]));
     var_dump((new Solution())->ladderLength("lost", "miss", ["most", "mist", "miss", "lost", "fist", "fish"]));
+    var_dump((new Solution())->ladderLength("a", "c", ["a", "b", "c"]));
+
 
     var_dump((new Solution())->ladderLength_2("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]));
     var_dump((new Solution())->ladderLength_2("hit", "cog", ["hot", "dot", "dog", "lot", "log"]));
     var_dump((new Solution())->ladderLength_2("hit", "log", ["hot", "dot", "dog", "lot", "log"]));
     var_dump((new Solution())->ladderLength_2("hot", "dog", ["hot", "dog"]));
     var_dump((new Solution())->ladderLength_2("lost", "miss", ["most", "mist", "miss", "lost", "fist", "fish"]));
+    var_dump((new Solution())->ladderLength_2("a", "c", ["a", "b", "c"]));
 
+    var_dump((new Solution())->ladderLength_3("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]));
+    var_dump((new Solution())->ladderLength_3("hit", "cog", ["hot", "dot", "dog", "lot", "log"]));
+    var_dump((new Solution())->ladderLength_3("hit", "log", ["hot", "dot", "dog", "lot", "log"]));
+    var_dump((new Solution())->ladderLength_3("hot", "dog", ["hot", "dog"]));
+    var_dump((new Solution())->ladderLength_3("lost", "miss", ["most", "mist", "miss", "lost", "fist", "fish"]));
     echo "======= test case end =======\n";
 }
