@@ -18,24 +18,23 @@ class Solution
         }
         $wordList = array_flip($wordList);
         $s1[] = $beginWord; // 开始的单词
-        $s2[] = $endWord; // 结束的单词
+        $s2[] = $endWord; // 结束的单词 // 双向BFS
         $n = strlen($beginWord); // 单词长度
         $level = 0;
         while (!empty($s1)) {
             $level++;
-            if (count($s1) > count($s2)) {
+            if (count($s1) > count($s2)) { //依次双向BFS实现,始终使用变量s1去运算。
                 $tmp = $s2;
                 $s2 = $s1;
                 $s1 = $tmp;
             }
             $s = [];
             foreach ($s1 as $word) {
-                for ($i = 0; $i < $n; $i++) { // 挨个准备替换单词中的字母
+                for ($i = 0; $i < $n; $i++) {
                     $word1 = $word;
-                    // 循环a-z的字母
                     for ($ch = ord('a'); $ch <= ord('z'); $ch++) {
                         $word1[$i] = chr($ch);
-                        if (in_array($word1, $s2)) { // 如果替换后的单词在目标数组里面，个数+1
+                        if (in_array($word1, $s2)) {
                             return ++$level;
                         }
                         if (!array_key_exists($word1, $wordList)) {
