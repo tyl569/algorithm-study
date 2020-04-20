@@ -57,7 +57,7 @@ class Solution
             return 0;
         }
         $queue = new SplQueue();
-        $visited = [];
+        $visited = [$beginWord];
         $queue->push($beginWord);
         $count = 0;
         while (!$queue->isEmpty()) {
@@ -83,38 +83,6 @@ class Solution
         return 0;
     }
 
-    function ladderLength_3($beginWord, $endWord, $wordList)
-    {
-        if (!in_array($endWord, $wordList)) {
-            return 0;
-        }
-        $queue = new SplQueue();
-        $visited = [];
-        $queue->push($beginWord);
-        $count = 0;
-        while (!$queue->isEmpty()) {
-            $size = $queue->count();
-            $count++;
-            for ($i = 0; $i < $size; $i++) {
-                $str = $queue->dequeue();
-                foreach ($wordList as $index => $word) {
-                    if (isset($visited[$index]) && $visited[$index] == true) { // 相比做了一个小优化
-                        continue;
-                    }
-                    if (!$this->canConvert($str, $word)) {
-                        continue;
-                    }
-                    if ($word == $endWord) { // 如果找到了目标字符串
-                        return $count + 1;
-                    }
-                    $visited[$index] = true;
-                    $queue->push($word);
-                }
-            }
-        }
-        return 0;
-    }
-
     function canConvert($str1, $str2)
     {
         if (strlen($str1) != strlen($str2)) {
@@ -130,6 +98,63 @@ class Solution
             }
         }
         return $count == 1;
+    }
+
+    function ladderLength_3($beginWord, $endWord, $wordList)
+    {
+        if (!in_array($endWord, $wordList)) {
+            return 0;
+        }
+        $wordList[] = $beginWord;
+        $queueLeft = new SplQueue();
+        $queueLeft->push($beginWord);
+        $queueRight = new SplQueue();
+        $queueRight->push($endWord);
+
+        $visitedLeft = [$beginWord];
+        $visitedRight = [$endWord];
+        $countLeft = 0;
+        $countRight = 0;
+        while (!$queueLeft->isEmpty() && !$queueRight->isEmpty()) {
+            $countLeft++;
+            $sizeLeft = $queueLeft->count();
+            for ($i = 0; $i < $sizeLeft; $i++) {
+                $strLeft = $queueLeft->dequeue();
+                for ($k = 0; $k < count($wordList); $k++) {
+                    if (in_array($wordList[$k], $visitedLeft)) { // 相比做了一个小优化
+                        continue;
+                    }
+                    if (!$this->canConvert($strLeft, $wordList[$k])) {
+                        continue;
+                    }
+                    if (in_array($wordList[$k], $visitedRight)) { // 如果找到了目标字符串
+                        return $countLeft + $countRight + 1;
+                    }
+                    $visitedLeft[] = $wordList[$k];
+                    $queueLeft->push($wordList[$k]);
+                }
+            }
+            $countRight++;
+            $sizeRight = $queueRight->count();
+            for ($i = 0; $i < $sizeRight; $i++) {
+                $strRight = $queueRight->dequeue();
+                for ($k = count($wordList) - 1; $k >= 0; $k--) {
+                    if (in_array($wordList[$k], $visitedRight)) {
+                        continue;
+                    }
+                    if (!$this->canConvert($wordList[$k], $strRight)) {
+                        continue;
+                    }
+                    if (in_array($wordList[$k], $visitedLeft)) {
+                        return $countLeft + $countRight + 1;
+                    }
+
+                    $visitedRight[] = $wordList[$k];
+                    $queueRight->push($wordList[$k]);
+                }
+            }
+        }
+        return 0;
     }
 
 }
@@ -159,5 +184,6 @@ function mock()
     var_dump((new Solution())->ladderLength_3("hit", "log", ["hot", "dot", "dog", "lot", "log"]));
     var_dump((new Solution())->ladderLength_3("hot", "dog", ["hot", "dog"]));
     var_dump((new Solution())->ladderLength_3("lost", "miss", ["most", "mist", "miss", "lost", "fist", "fish"]));
+    var_dump((new Solution())->ladderLength_3("a", "c", ["a", "b", "c"]));
     echo "======= test case end =======\n";
 }
