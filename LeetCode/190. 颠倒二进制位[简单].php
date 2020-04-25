@@ -8,14 +8,14 @@ class Solution
      */
     function reverseBits($n)
     {
-        $ret = 0;
-        $power = 31;
-        while ($n) {
-            $ret += ($n & 1) << $power;
-            $n = $n >> 1;
-            $power -= 1;
+        $res = 0;
+        for ($i = 31; $i >= 0; $i--) {
+            $bit = ($n & 1) << $i; // 将数字N的末尾，移到第$i位
+            $res = $res + $bit; // 将移动后的数字累加
+            $n = $n >> 1; // 移动之后，N向右移动一位
         }
-        return $ret;
+        return $res;
+
     }
 
     function reverseBits_2($n)
