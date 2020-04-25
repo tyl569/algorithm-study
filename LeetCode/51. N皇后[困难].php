@@ -26,7 +26,7 @@ class Solution
 
     function helper(&$matrix, $n, $row)
     {
-        if ($n == $row) {
+        if ($n == $row) { // 当检测完最后一行之后，递归结束
             $this->result[] = $matrix;
             return;
         }
