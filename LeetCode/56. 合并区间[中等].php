@@ -15,17 +15,6 @@ class Solution
         $res = [];
         $idx = -1;
 
-        for ($i = 1; $i < count($intervals); $i++) {
-            $cur = $intervals[$i];
-            $front = $intervals[$i - 1];
-            if ($cur[0] >= $front[0] && $cur[0] <= $front[1]) {
-                $cur[0] = min($front[0], $cur[0]);
-                $cur[1] = max($front[1], $cur[1]);
-                $intervals[$i] = $cur;
-                unset($intervals[$i - 1]);
-            }
-        }
-
         foreach ($intervals as $interval) {
             if ($idx == -1 || $interval[0] > $res[$idx][1]) {
                 $res[++$idx] = $interval;
