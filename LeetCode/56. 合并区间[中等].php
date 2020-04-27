@@ -16,6 +16,7 @@ class Solution
         $idx = -1;
 
         foreach ($intervals as $interval) {
+            // 如果最开始没有元素，或者当前的第一个元素的开始值比前个元素结束值大，直接插入
             if ($idx == -1 || $interval[0] > $res[$idx][1]) {
                 $res[++$idx] = $interval;
             } else {
