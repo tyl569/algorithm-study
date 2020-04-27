@@ -13,14 +13,14 @@ class Solution
             return $a[0] - $b[0]; // 先根据第一项进行排序
         });
         $res = [];
-        $idx = -1;
 
-        foreach ($intervals as $interval) {
-            // 如果最开始没有元素，或者当前的第一个元素的开始值比前个元素结束值大，直接插入
-            if ($idx == -1 || $interval[0] > $res[$idx][1]) {
-                $res[++$idx] = $interval;
+        for ($i = 0; $i < count($intervals); $i++) {
+            // 如果是第一个元素，默认插入
+            // 比较res最后一个元素的结束值和当前元素开始值
+            if ($i == 0 || $intervals[$i][0] > $res[count($res) - 1][1]) {
+                $res[] = $intervals[$i];
             } else {
-                $res[$idx][1] = max($res[$idx][1], $interval[1]);
+                $res[count($res) - 1][1] = max($res[count($res) - 1][1], $intervals[$i][1]);
             }
         }
         return $res;
