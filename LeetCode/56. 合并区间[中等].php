@@ -13,14 +13,19 @@ class Solution
             return $a[0] - $b[0]; // 先根据第一项进行排序
         });
         $res = [];
-
+        $idx = -1; // 使用idx，不用每次统计数组
         for ($i = 0; $i < count($intervals); $i++) {
             // 如果是第一个元素，默认插入
             // 比较res最后一个元素的结束值和当前元素开始值
-            if ($i == 0 || $intervals[$i][0] > $res[count($res) - 1][1]) {
-                $res[] = $intervals[$i];
+//            if ($i == 0 || $intervals[$i][0] > $res[count($res) - 1][1]) {
+//                $res[] = $intervals[$i];
+//            } else {
+//                $res[count($res) - 1][1] = max($res[count($res) - 1][1], $intervals[$i][1]);
+//            }
+            if ($i == 0 || $intervals[$i][0] > $res[$idx][1]) {
+                $res[++$idx] = $intervals[$i];
             } else {
-                $res[count($res) - 1][1] = max($res[count($res) - 1][1], $intervals[$i][1]);
+                $res[$idx][1] = max($res[$idx][1], $intervals[$i][1]);
             }
         }
         return $res;
