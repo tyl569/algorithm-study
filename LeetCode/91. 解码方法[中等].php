@@ -34,25 +34,26 @@ class Solution
 
     function numDecodings2($s)
     {
-        $len = strlen($s);
+        $len = strlen($s);;
         $dp[$len] = 1;
-        if ($s{$len - 1} == 0) {
-            $dp[$len - 1] = 0;
-        } else {
-            $dp[$len - 1] = 1;
-        }
-        for ($i = $len - 2; $i >= 0; $i--) {
+        for ($i = $len - 1; $i >= 0; $i--) {
             if ($s{$i} == 0) {
                 $dp[$i] = 0;
             } else {
-                $dp[$i] = $dp[$i + 1] + ((($s{$i} * 10 + $s{$i + 1}) < 27) ? $dp[$i + 2] : 0);
+                $dp[$i] = $dp[$i + 1] + (($s{$i} * 10 + $s{$i + 1} < 27) ? $dp[$i + 2] : 0);
             }
         }
         return $dp[0];
-
     }
 }
 
-echo (new Solution())->numDecodings('1223104');
-echo "\n";
-echo (new Solution())->numDecodings2('1223104');
+
+mock();
+
+function mock()
+{
+    echo "======= test case start =======\n";
+    echo (new Solution())->numDecodings('1223104') . "\n";
+    echo (new Solution())->numDecodings2('1223104') . "\n";
+    echo "======= test case end =======\n";
+}
