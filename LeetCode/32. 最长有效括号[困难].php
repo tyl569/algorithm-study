@@ -9,10 +9,9 @@ class Solution
      */
     function longestValidParentheses($s)
     {
+        $dp = array_fill(0, strlen($s), 0);
         $max = 0;
-        $dp = [];
         for ($i = 0; $i < strlen($s); $i++) {
-            $dp[$i] = 0;
             if ($s{$i} == ")") {
                 $pre = $i - ($dp[$i - 1] ?? 0) - 1;
                 if (isset($dp[$pre]) && $s{$pre} == "(" && $dp[$pre] >= 0) {
@@ -24,7 +23,7 @@ class Solution
         return $max;
     }
 
-    function longestValidParentheses2($s)
+    function longestValidParentheses_2($s)
     {
         $left = 0;
         $right = 0;
@@ -65,19 +64,21 @@ mock();
 function mock()
 {
     echo "======== test case start ======\n";
-    echo (new Solution())->longestValidParentheses(")(");
-    echo "\n";
     echo (new Solution())->longestValidParentheses("()()()()()");
+    echo "\n";
+    echo (new Solution())->longestValidParentheses_2("()()()()()");
     echo "\n";
     echo (new Solution())->longestValidParentheses("(()()()()()");
     echo "\n";
+    echo (new Solution())->longestValidParentheses_2("(()()()()()");
+    echo "\n";
     echo (new Solution())->longestValidParentheses("((())()()()()");
     echo "\n";
-    echo (new Solution())->longestValidParentheses2("()()()()()");
+    echo (new Solution())->longestValidParentheses_2("((())()()()()");
     echo "\n";
-    echo (new Solution())->longestValidParentheses2("(()()()()()");
+    echo (new Solution())->longestValidParentheses("()(()");
     echo "\n";
-    echo (new Solution())->longestValidParentheses2("((())()()()()");
+    echo (new Solution())->longestValidParentheses_2("()(()");
     echo "\n";
     echo "======== test case end =========";
 }
