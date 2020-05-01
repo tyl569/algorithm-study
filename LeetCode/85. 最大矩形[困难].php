@@ -44,40 +44,34 @@ class Solution
         for ($i = 0; $i < $m; $i++) {
             $curLeft = 0;
             $curRight = $n;
-            $j = 0;
-            while ($j < $n) { // 向上延伸
-                if ($matrix[$i][$j] == 1) {
+            for ($j = 0; $j < $n; $j++) {
+                if ($matrix[$i][$j] == 1) { // 更新高度
                     $height[$j]++;
                 } else {
                     $height[$j] = 0;
                 }
-                $j++;
             }
-            $k = 0;
-            while ($k < $n) { // 向左延伸
-                if ($matrix[$i][$k] == 1) {
-                    $left[$k] = max($left[$k], $curLeft);
-                } else {
-                    $left[$k] = 0;
-                    $curLeft = $k + 1;
-                }
-                $k++;
-            }
-            $l = $n - 1;
-            while ($l >= 0) { // 向右延伸
-                if ($matrix[$i][$l] == 1) {
-                    $right[$l] = min($right[$l], $curRight);
 
+            for ($j = 0; $j < $n; $j++) {
+                if ($matrix[$i][$j] == 1) { // 更新高度
+                    $left[$j] = max($left[$j], $curLeft);
                 } else {
-                    $right[$l] = $n;
-                    $curRight = $l;
+                    $left[$j] = 0;
+                    $curLeft = $j + 1;
                 }
-                $l--;
             }
-            $z = 0;
-            while ($z < $n) {
-                $maxArea = max($maxArea, ($right[$z] - $left[$z]) * $height[$z]);
-                $z++;
+
+            for ($j = $n - 1; $j >= 0; $j--) {
+                if ($matrix[$i][$j] == 1) {
+                    $right[$j] = min($right[$j], $curRight);
+                } else {
+                    $right[$j] = $n;
+                    $curRight = $j;
+                }
+            }
+
+            for ($j = 0; $j < $n; $j++) {
+                $maxArea = max($maxArea, ($right[$j] - $left[$j]) * $height[$j]);
             }
         }
         return $maxArea;
