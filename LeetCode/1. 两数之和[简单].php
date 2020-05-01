@@ -23,11 +23,18 @@ class Solution
     }
 }
 
-$ret = (new Solution())->twoSum([2, 7, 11, 15], 9);
-var_dump($ret);
+mock();
 
-$ret = (new Solution())->twoSum([1, 4, 5, 7], 9);
-var_dump($ret);
+function mock()
+{
+    echo "======= test case start =======\n";
+    $ret = (new Solution())->twoSum([2, 7, 11, 15], 9);
+    var_dump($ret);
 
-$ret = (new Solution())->twoSum([3, 2, 4], 6);
-var_dump($ret);
+    $ret = (new Solution())->twoSum([1, 4, 5, 7], 9);
+    var_dump($ret);
+
+    $ret = (new Solution())->twoSum([3, 2, 4], 6);
+    var_dump($ret);
+    echo "======= test case end =======\n";
+}
