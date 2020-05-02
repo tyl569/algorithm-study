@@ -30,7 +30,6 @@ function Find($target, $array)
     }
     return false;
 }
-
 $array = [
     [1, 2, 3, 4, 5],
     [6, 7, 8, 9, 10],
@@ -42,7 +41,6 @@ $array = [
 var_dump(Find(13, $array));
 
 var_dump(Find(30, $array));
-
 $array = [
     [1, 2, 8, 9],
     [2, 4, 9, 12],
@@ -50,5 +48,4 @@ $array = [
     [6, 8, 11, 15]
 ];
 var_dump(Find(7, $array));
-
 var_dump(Find(16, $array));
