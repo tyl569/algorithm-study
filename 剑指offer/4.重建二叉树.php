@@ -25,7 +25,7 @@ function helper($pre, $preStart, $preEnd, $in, $inStart, $inEnd)
         return null;
     }
     $root = new TreeNode($pre[$preStart]);
-    $i = $in[$pre[$preStart]];
+    $i = $in[$pre[$preStart]]; // 找到根节点在中序遍历的位置
     $root->left = helper($pre, $preStart + 1, $preStart + $i - $inStart, $in, $inStart, $i - 1);
     $root->right = helper($pre, $preStart + $i - $inStart + 1, $preEnd, $in, $i + 1, $inEnd);
     return $root;
