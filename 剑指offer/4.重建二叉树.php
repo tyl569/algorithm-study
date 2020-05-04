@@ -31,6 +31,18 @@ function helper($pre, $preStart, $preEnd, $in, $inStart, $inEnd)
     return $root;
 }
 
+function reConstructBinaryTree_2($pre, $vin)
+{
+    if (!empty($pre) && !empty($vin)) {
+        $root = new TreeNode($pre[0]);
+        $index = array_search($pre[0], $vin);
+        $root->left = reConstructBinaryTree_2(array_slice($pre, 1, $index), array_slice($vin, 0, $index));
+        $root->right = reConstructBinaryTree_2(array_slice($pre, $index + 1), array_slice($vin, $index + 1));
+        return $root;
+    }
+}
+
+
 //$rootIndex = 0;
 
 //
@@ -67,6 +79,6 @@ $vin = [4, 2, 1, 5, 3, 6];
 //$root = reConstructBinaryTree($pre, $vin);
 //TreeNode::printTree($root);
 //echo "\n";
-$root = reConstructBinaryTree($pre, $vin);
+$root = reConstructBinaryTree_2($pre, $vin);
 TreeNode::printTree($root);
 
