@@ -26,4 +26,13 @@ function Fibonacci($n)
     return $num;
 }
 
-echo Fibonacci(4);
+function Fibonacci_2($n)
+{
+    $sqrt5 = sqrt(5);
+    $fabN = pow(((1 + $sqrt5) / 2), $n) - pow(((1 - $sqrt5) / 2), $n);
+    return intval($fabN / $sqrt5);
+}
+
+
+echo Fibonacci(3) . "\n";
+echo Fibonacci_2(3) . "\n";
