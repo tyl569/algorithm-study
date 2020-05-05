@@ -64,6 +64,13 @@ class Solution
         }
         return $num2;
     }
+
+    function climbStairs_4($n)
+    {
+        $sqrt5 = sqrt(5);
+        $fabN = pow((1 + $sqrt5) / 2, $n + 1) - pow((1 - $sqrt5) / 2, $n + 1);
+        return intval($fabN / $sqrt5);
+    }
 }
 
 
@@ -75,5 +82,6 @@ function mock()
     echo (new Solution())->climbStairs(30) . "\n";
     echo (new Solution())->climbStairs_2(30) . "\n";
     echo (new Solution())->climbStairs_3(30) . "\n";
+    echo (new Solution())->climbStairs_4(30) . "\n";
     echo "======= test case end =======\n";
 }
