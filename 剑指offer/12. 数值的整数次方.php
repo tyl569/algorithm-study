@@ -27,4 +27,28 @@ function Power($base, $exponent)
     return $ret;
 }
 
+function Power_2($base, $exponent)
+{
+    if ($exponent < 0) {
+        $base = 1 / $base;
+        $exponent = -$exponent;
+    }
+    return fastPower($base, $exponent);
+}
+
+function fastPower($base, $exponent)
+{
+    if ($exponent == 0) {
+        return 1;
+    }
+    $half = fastPower($base, intval($exponent / 2));
+    if ($exponent & 1) {
+        return $half * $half * $base;
+    }
+    return $half * $half;
+}
+
 echo Power(2, 3) . "\n";
+echo Power_2(2, 3) . "\n";
+echo Power(2, 5) . "\n";
+echo Power_2(2, 5) . "\n";
