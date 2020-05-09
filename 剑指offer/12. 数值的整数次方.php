@@ -14,6 +14,7 @@ function Power($base, $exponent)
 {
     if ($exponent < 0) {
         $base = 1 / $base;
+        $exponent = -$exponent;
     }
     $cur = $base;
     $ret = 1;
