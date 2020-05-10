@@ -19,3 +19,19 @@ function Mirror(&$root)
     Mirror($root->left);
     Mirror($root->right);
 }
+
+function Mirror_2(&$root)
+{
+    $stack = new SplStack();
+    $stack->push($root);
+    while (!$stack->isEmpty()) {
+        $node = $stack->pop();
+        if ($node->left != null || $node->right != null) {
+            $tmp = $node->left;
+            $node->left = $node->right;
+            $node->right = $tmp;
+            $stack->push($node->right);
+            $stack->push($node->left);
+        }
+    }
+}
