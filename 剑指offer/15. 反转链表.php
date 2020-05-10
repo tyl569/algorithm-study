@@ -2,6 +2,15 @@
 
 require_once "../Struct/ListNode.php";
 
+/**
+ * @param $pHead
+ * @return null
+ *
+ *
+ * 题目描述
+ * 输入一个链表，反转链表后，输出新链表的表头。
+ *
+ */
 function ReverseList($pHead)
 {
     $newHead = null;
