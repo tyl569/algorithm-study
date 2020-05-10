@@ -10,17 +10,12 @@
  */
 function Mirror(&$root)
 {
-    helper($root);
-}
-
-function helper(&$node)
-{
-    if ($node == null) {
+    if ($root == null) {
         return;
     }
-    $tmp = $node->left;
-    $node->left = $node->right;
-    $node->right = $tmp;
-    helper($node->left);
-    helper($node->right);
+    $tmp = $root->left;
+    $root->left = $root->right;
+    $root->right = $tmp;
+    Mirror($root->left);
+    Mirror($root->right);
 }
