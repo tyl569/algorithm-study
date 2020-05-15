@@ -17,18 +17,32 @@ function VerifySquenceOfBST($sequence)
     return helper($sequence, 0, count($sequence) - 1);
 }
 
+/**
+ * @param $sequence
+ * @param $i
+ * @param $j
+ * @return bool
+ *
+ * 划分左右子树
+ *
+ * 找到第一个大于根节点的值，索引为$m，此时左子树区间[$i, $m-1] 和 [$m, $j-1]
+ *
+ *
+ */
 function helper($sequence, $i, $j)
 {
-    if ($i > $j) {
+    if ($i >= $j) {
         return true;
     }
+    $rootVal = $sequence[$j];
     $p = $i;
-    while ($sequence[$p] < $sequence[$j]) {
-        $p++;
+    while ($sequence[$p] < $rootVal) {
+        $p++; // 找到第一个大于根节点的值
     }
-    $m = $p;
-    while ($sequence[$p] > $sequence[$j]) {
+    $m = $p;//记为$m
+    while ($sequence[$p] > $rootVal) { // 找到根节点
         $p++;
     }
     return $p == $j && helper($sequence, $i, $m - 1) && helper($sequence, $m, $j - 1);
 }
+
