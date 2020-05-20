@@ -9,7 +9,6 @@ class Solution
      * @param TreeNode $root
      * @return Integer[]
      */
-
     function rightSideView($root)
     {
         $val = [$root->val];
@@ -23,11 +22,12 @@ class Solution
         if ($node == null) {
             return;
         }
-        if ($node->right != null) {
+        if ($node->right != null) { // 优先选择右子树
             $val[$level] = $node->right->val;
-        } elseif ($node->left != null) {
+        } elseif ($node->left != null) { // 如果右子树的值为空，取左子树
             $val[$level] = $node->left->val;
         }
+        // 递归下一层
         $this->helper($node->left, $level + 1, $val);
         $this->helper($node->right, $level + 1, $val);
     }
