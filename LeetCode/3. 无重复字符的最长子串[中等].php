@@ -14,7 +14,6 @@ class Solution
         $left = 0;
         $right = 0;
         $strArr = [];
-        $lenArr[$left] = 1;
         while ($left < strlen($s) && $right < strlen($s)) {
             if (!isset($strArr[$s{$right}])) {
                 $strArr[$s{$right}] = $s{$right};
