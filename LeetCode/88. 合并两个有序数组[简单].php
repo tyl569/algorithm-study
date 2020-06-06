@@ -53,9 +53,8 @@ class Solution
         }
         $i = $m - 1;
         $j = $n - 1;
-        $end = ($m + $n) - 1; // 定位到合并之后的最后一个元素
+        $end = ($m + $n) - 1;
         while ($i >= 0 && $j >= 0) {
-            // 将比较大的值，填写到end位置
             if ($nums1[$i] > $nums2[$j]) {
                 $nums1[$end] = $nums1[$i];
                 $i--;
@@ -65,16 +64,10 @@ class Solution
             }
             $end--;
         }
-        while ($i >= 0) {
-            $nums1[$i] = $nums1[$i];
-            $i--;
-        }
-
         while ($j >= 0) {
             $nums1[$j] = $nums2[$j];
             $j--;
         }
-
         return $nums1;
     }
 }
