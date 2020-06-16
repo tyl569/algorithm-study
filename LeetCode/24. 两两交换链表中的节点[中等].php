@@ -30,7 +30,7 @@ class Solution
         }
         $first = $head;
         $second = $head->next;
-        $first->next = $this->swapPairs($second->next);
+        $first->next = $this->swapPairs2($second->next);
         $second->next = $first;
         return $second;
     }
@@ -75,7 +75,7 @@ function mock($head)
         $head = $head->next;
     }
     echo "\n";
-    $newHead = (new Solution())->swapPairs($head1);
+    $newHead = (new Solution())->swapPairs2($head1);
     echo "调换后链表:";
     while ($newHead != null) {
         echo $newHead->val;
