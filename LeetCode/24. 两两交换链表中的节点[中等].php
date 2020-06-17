@@ -45,12 +45,12 @@ class Solution
         $pre->next = $head;
         $tmp = $pre;
         while ($tmp->next != null && $tmp->next->next != null) {
-            $first = $tmp->next;
-            $second = $tmp->next->next;
-            $tmp->next = $second;
-            $first->next = $second->next;
-            $second->next = $first;
-            $tmp = $first;
+            $first = $tmp->next; // 前一个节点
+            $second = $tmp->next->next; // 后一个节点
+            $tmp->next = $second; // 将第二个节点连起来
+            $first->next = $second->next; // 第一个节点指向第二个节点后的节点
+            $second->next = $first; // 交换节点信息
+            $tmp = $first; // 挂到新的链表
         }
         return $pre->next;
     }

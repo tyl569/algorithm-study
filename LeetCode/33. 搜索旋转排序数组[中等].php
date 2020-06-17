@@ -17,20 +17,20 @@ class Solution
             if ($nums[$mid] == $target) {
                 return $mid;
             }
-            if ($nums[$left] <= $nums[$mid]) {
+            if ($nums[$mid] >= $nums[$left]) { // $mid左部分是【单调递增】，右部分是【非单调递增】
+                // 如果$target落在【单调递增】的区间，缩小右边界；否则，缩小左边界
                 if ($target >= $nums[$left] && $target <= $nums[$mid]) {
                     $right = $mid - 1;
                 } else {
                     $left = $mid + 1;
                 }
-            } else {
+            } else { // $mid左部分是【非单调递增】，右部分是【单调递增】
+                // 如果$target落在【单调递增】区间，缩小左边界，；否则缩小右边界
                 if ($target >= $nums[$mid] && $target <= $nums[$right]) {
                     $left = $mid + 1;
-
                 } else {
                     $right = $mid - 1;
                 }
-
             }
             $mid = intval($left + ($right - $left) / 2);
         }

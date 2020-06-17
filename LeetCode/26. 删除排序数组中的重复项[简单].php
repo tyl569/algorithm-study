@@ -24,6 +24,6 @@ class Solution
 }
 
 $nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
-$ret = (new Solution())->removeDuplicates($nums);
+echo  (new Solution())->removeDuplicates($nums);
 $nums = [1, 1, 2];
-$ret = (new Solution())->removeDuplicates($nums);
+echo (new Solution())->removeDuplicates($nums);
