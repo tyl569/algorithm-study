@@ -11,6 +11,19 @@ class Solution
      */
     function isValidBST($root)
     {
+        return $this->helper($root, PHP_INT_MIN, PHP_INT_MAX);
+    }
+
+    function helper($node, $lower, $upper)
+    {
+        if ($node == null) {
+            return true;
+        }
+        if ($node->val <= $lower || $node->val >= $upper) {
+            return false;
+        }
+        return $this->helper($node->left, $lower, $node->val)
+            && $this->helper($node->right, $node->val, $upper);
     }
 
 
