@@ -23,6 +23,23 @@ class Solution
         $tmp1->next = $tmp1->next->next;
         return $tmp->next;
     }
+
+    function removeNthFromEnd_2($head, $n)
+    {
+        $first = new ListNode(0);
+        $first->next = $head;
+        $second = $first;
+        $res = $first;
+        for ($i = 1; $i <= $n + 1; $i++) {
+            $first = $first->next;
+        }
+        while ($first != null) {
+            $first = $first->next;
+            $second = $second->next;
+        }
+        $second->next = $second->next->next;
+        return $res->next;
+    }
 }
 
 mock();
@@ -41,7 +58,7 @@ function mock()
     $node3->next = $node4;
     $node4->next = $node5;
 
-    $ret = (new Solution())->removeNthFromEnd($node1, 3);
+    $ret = (new Solution())->removeNthFromEnd_2($node1, 3);
 
     ListNode::printListNode($ret);
     echo "======= test case end =======\n";
