@@ -9,4 +9,14 @@ class ListNode
     {
         $this->val = $val;
     }
+
+    static function printListNode($node)
+    {
+        if ($node == null) {
+            return;
+        }
+        echo " {$node->val} \n";
+
+        self::printListNode($node->next);
+    }
 }
