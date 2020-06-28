@@ -1,5 +1,7 @@
 <?php
 
+// 时间复杂度 O(N * logN)
+// 空间复杂度 O(logN)
 function fastSort($arr)
 {
     if (count($arr) <= 1) {
