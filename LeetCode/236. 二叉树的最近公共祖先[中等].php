@@ -12,7 +12,7 @@ class Solution
      */
     function lowestCommonAncestor($root, $p, $q)
     {
-        if (!$root || $root == $p || $root == $q) {
+        if ($root == null || $root == $p || $root == $q) {
             return $root;
         }
         $left = $this->lowestCommonAncestor($root->left, $p, $q);
