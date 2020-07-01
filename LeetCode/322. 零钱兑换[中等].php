@@ -12,7 +12,7 @@ class Solution
     {
         $dp[0] = 0;
         for ($i = 1; $i <= $amount; $i++) {
-            $dp[$i] = $amount + 1;
+            $dp[$i] = PHP_INT_MAX;
         }
         for ($i = 1; $i <= $amount; $i++) {
             for ($j = 0; $j < count($coins); $j++) {
