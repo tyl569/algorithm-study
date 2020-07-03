@@ -45,6 +45,6 @@ function mock()
     echo "======= test case start =======\n";
     echo (new Solution())->search([4, 5, 6, 0, 1, 2], 0) . "\n";
     echo (new Solution())->search([4, 5, 6, 0, 1, 2], 3) . "\n";
-    echo (new Solution())->search([5,1,3], 0) . "\n";
+    echo (new Solution())->search([5, 1, 3], 0) . "\n";
     echo "======= test case end =======\n";
 }

@@ -47,7 +47,8 @@ class Solution
         return $p;
     }
 
-    function mergeTwoLists($l1, $l2) {
+    function mergeTwoLists($l1, $l2)
+    {
         if ($l1 == null) {
             return $l2;
         }

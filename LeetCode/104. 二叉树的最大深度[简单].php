@@ -16,7 +16,7 @@ class Solution
         }
         $left = $this->maxDepth($root->left);
         $right = $this->maxDepth($root->right);
-        return max($left, $right)+1;
+        return max($left, $right) + 1;
     }
 }
 
@@ -38,7 +38,7 @@ function mock()
     $node3->left = $node4;
     $node3->right = $node5;
 
-    echo (new Solution())->maxDepth($root)."\n";
+    echo (new Solution())->maxDepth($root) . "\n";
 
     echo "======= test case end =======\n";
 

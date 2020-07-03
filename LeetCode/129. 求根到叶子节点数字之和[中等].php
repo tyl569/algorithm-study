@@ -79,6 +79,6 @@ function mock()
      */
 
     echo "======= test case start =======\n";
-    echo (new Solution())->sumNumbers($root)."\n";
+    echo (new Solution())->sumNumbers($root) . "\n";
     echo "======= test case end =========\n";
 }

@@ -19,7 +19,7 @@ class Solution
             }
         }
         $res = 0;
-        for ($i=0; $i<count($dp); $i++) {
+        for ($i = 0; $i < count($dp); $i++) {
             $res = max($res, $dp[$i]);
         }
         return $res;

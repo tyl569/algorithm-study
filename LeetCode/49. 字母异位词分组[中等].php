@@ -26,11 +26,11 @@ class Solution
         foreach ($strs as $str) {
             $val = 1;
             for ($i = 0; $i < strlen($str); $i++) {
-                $val *= $prime[ord($str{$i})-97];
+                $val *= $prime[ord($str{$i}) - 97];
             }
             $resArr[$val][] = $str;
         }
-        return  array_values($resArr);
+        return array_values($resArr);
     }
 
 }

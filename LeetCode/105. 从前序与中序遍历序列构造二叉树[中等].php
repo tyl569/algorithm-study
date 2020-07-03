@@ -53,8 +53,8 @@ mock();
 function mock()
 {
     echo "======= test case start =======\n";
-    $preOrder = [3,9,20,15,7];
-    $inOrder = [9,3,15,20,7];
+    $preOrder = [3, 9, 20, 15, 7];
+    $inOrder = [9, 3, 15, 20, 7];
     $root = (new Solution())->buildTree_2($preOrder, $inOrder);
     TreeNode::printTree($root);
     echo "======= test case end =======\n";

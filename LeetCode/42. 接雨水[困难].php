@@ -63,11 +63,11 @@ class Solution
                 // 如果左边的值，小于右边，说明当前位置的右边最大值，肯定不小于$height[$right]，只需要确定左边界
                 $leftMax = max($leftMax, $height[$left]);
                 $totalVol += $leftMax - $height[$left];
-                $left ++;
+                $left++;
             } else {
                 $rightMax = max($rightMax, $height[$right]);
                 $totalVol += $rightMax - $height[$right];
-                $right --;
+                $right--;
             }
         }
         return $totalVol;
